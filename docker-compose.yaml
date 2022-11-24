@@ -1,0 +1,13 @@
+services:
+  cms:
+    build: ./cms
+    ports:
+      - 3333:3333
+    volumes:
+      - ./cms:/opt/cms
+  web:
+    build: ./web
+    ports:
+      - 3000:3000
+    volumes:
+      - ./web:/opt/web
