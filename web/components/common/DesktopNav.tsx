@@ -3,8 +3,8 @@ import tw from 'twin.macro'
 import styled, { css } from 'styled-components'
 import Link from 'next/link'
 
-const Nav = tw.nav`relative flex flex-col items-center`
-const Top = tw.ul`flex flex-row uppercase font-poppins text-lg`
+const Nav = tw.nav`relative flex flex-col items-center lg:(absolute w-auto mx-auto left-[50%] -translate-x-[50%])`
+const Top = tw.ul`flex flex-row uppercase font-poppins text-lg -mx-3`
 const Children = styled.ul`
   ${tw`bg-grey absolute bottom-0 left-0 flex-col hidden min-w-full text-white translate-y-full before:([content:""] bg-primary w-full absolute top-0 left-0 -translate-y-full h-0.5)`}
   a {
@@ -19,62 +19,17 @@ const ChildItem = styled.li`
   ${tw`hover:bg-secondary flex w-full text-base capitalize`}
 `
 
-interface FilterProps {}
+interface Props {
+  navItems: any[]
+}
 
-const navItems = [
-  {
-    title: 'History',
-    url: '#',
-    children: [],
-  },
-  {
-    title: 'Food & Fuel',
-    url: '#',
-    children: [
-      { title: 'Fuel', url: '#', children: [] },
-      { title: 'Resturants', url: '#', children: [] },
-    ],
-  },
-  {
-    title: 'Services',
-    url: '#',
-    children: [
-      {
-        title: 'Conferences',
-        url: '#',
-        children: [],
-      },
-      {
-        title: 'Lodging',
-        url: '#',
-        children: [],
-      },
-      {
-        title: 'Shopping',
-        url: '#',
-        children: [],
-      },
-      {
-        title: 'Bus Services',
-        url: '#',
-        children: [],
-      },
-    ],
-  },
-  {
-    title: 'Contact Us',
-    url: '#',
-    children: [],
-  },
-]
-
-const DesktopNav: VFC<FilterProps> = ({ ...rest }) => {
-  const listItems = (nav, child = false) => {
+const DesktopNav: VFC<Props> = ({ navItems, ...rest }) => {
+  const listItems = (nav: any, child = false) => {
     const Item = !!child ? ChildItem : TopItem
     const List = !!child ? Children : Top
     return (
       <List className={!!child ? 'children' : ''}>
-        {nav.map(({ title, url, children }, i) => (
+        {nav.map(({ title, url, children }: any, i: number) => (
           <Item key={i}>
             <Link href={url}>{title}</Link>
             {!!children && children.length > 0 && listItems(children, true)}

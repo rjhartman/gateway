@@ -18,6 +18,7 @@ module.exports = {
       },
       zIndex: {
         behind: '-1',
+        excessive: '99999',
       },
     },
   },
