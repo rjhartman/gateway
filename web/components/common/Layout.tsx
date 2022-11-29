@@ -1,8 +1,7 @@
 import type { VFC, ReactNode } from 'react'
 import tw from 'twin.macro'
-import Head from 'next/head'
 
-const Section = tw.section``
+import Header from '@common/Header'
 
 interface LayoutProps {
   children: ReactNode
@@ -11,6 +10,7 @@ interface LayoutProps {
 const Layout: VFC<LayoutProps> = ({ children }) => {
   return (
     <>
+      <Header />
       <main>{children}</main>
     </>
   )
