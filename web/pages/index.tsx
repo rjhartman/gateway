@@ -1,13 +1,13 @@
 import tw from 'twin.macro'
+import Layout from '@common/Layout'
+import FrontHero from 'components/frontPage/FrontHero'
 
-const Div = tw.div`bg-blue-100 text-black text-3xl py-20 flex flex-col gap-2`
-
+const Div = tw.div`h-[130vh] w-full bg-pink-300`
 export default function Home() {
   return (
-    <Div>
-      <p>Hello World</p>
-      <p>Not Mont</p>
-      <p tw="font-mont">Mont</p>
-    </Div>
+    <Layout>
+      <FrontHero />
+      <Div></Div>
+    </Layout>
   )
 }
