@@ -5,9 +5,14 @@ services:
       - 3333:3333
     volumes:
       - ./cms:/opt/cms
+      - cms_modules:/opt/cms/node_modules
   web:
     build: ./web
     ports:
       - 3000:3000
     volumes:
       - ./web:/opt/web
+      - web_modules:/opt/web/node_modules
+volumes:
+  cms_modules:
+  web_modules:
