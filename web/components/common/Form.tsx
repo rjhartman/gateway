@@ -36,7 +36,7 @@ const fields = [
 interface Props {}
 
 const FormComponent = tw.form`flex flex-col w-full gap-6`
-const Submit = tw.input`w-full p-2 bg-primary text-white duration-500 ease-in-out text-lg cursor-pointer font-bold hover:bg-secondary rounded-lg mt-4`
+const Submit = tw.input`w-full p-2 bg-primary! text-white duration-500 ease-in-out text-lg cursor-pointer font-bold hover:bg-secondary! rounded-lg mt-4`
 const Response = styled.div(() => [])
 
 const Form: VFC<Props> = ({ ...rest }) => {
@@ -70,12 +70,10 @@ const Form: VFC<Props> = ({ ...rest }) => {
   }
 
   function validateFields() {
-    console.log('validating')
     let valid = true
     setStatefullFields(
       statefulFields.map((field) => {
         if (field.ref.current) {
-          console.log('running')
           valid = validate(field)
         }
         return field
