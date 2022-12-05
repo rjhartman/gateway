@@ -8,4 +8,4 @@ RUN yarn install
 
 # Port 3000 is the default port for Next at the time of writing
 # Just to be safe, explicitly run on port 3000 to match the docker compose yaml
-CMD ["yarn", "dev", "--", "--hostname=0.0.0.0", "--port=3000"]
+CMD ["yarn", "dev", "--hostname=0.0.0.0", "--port=3000"]
