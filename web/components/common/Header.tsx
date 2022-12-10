@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 import DesktopNav from '@common/DesktopNav'
 import MobileNav from '@common/MobileNav'
+import Logo from '@common/Logo'
 import { cleanPhoneNumber } from '@functions'
 
 const Component = styled.header<{ small: boolean }>(({ small }) => [
@@ -95,7 +96,9 @@ const Header: VFC<FilterProps> = ({ ...rest }) => {
 
   return (
     <Component {...rest} small={smallHeader}>
-      <LogoWrapper href="/">Gateway Logo</LogoWrapper>
+      <LogoWrapper href="/">
+        <Logo />
+      </LogoWrapper>
       <div tw="hidden md:flex flex-col items-end gap-2">
         <DesktopNav navItems={navItems} />
         <Number href={`tel:${cleanPhoneNumber(phoneNumber)}`}>
