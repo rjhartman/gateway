@@ -1,32 +1,36 @@
-import type { FC, ReactNode } from 'react'
+import type { FC } from 'react'
 import tw from 'twin.macro'
 import styled from 'styled-components'
+import { useInView } from 'react-intersection-observer'
 
-const styles = ({ h1, white }: { h1: boolean; white: boolean }) => [
-  tw`text-7xl font-allita relative items-center text-center pb-4 after:([content: ""] bg-primary h-1 w-3/4 absolute bottom-0 left-0 right-0 mx-auto)`,
-  !!h1 ? tw`` : tw``,
+const styles = ({ white, inView }: { white: boolean; inView: boolean }) => [
+  tw`text-7xl font-allita relative flex flex-col items-center text-center pb-4 after:([content: ""] bg-primary h-1 absolute duration-700 ease-in-out bottom-0 )`,
   !!white ? tw`text-white` : tw`text-font`,
+  !!inView ? tw`after:(w-3/4)` : tw`after:(w-0)`,
 ]
 
-const H1 = styled.h1(styles)
-const H2 = styled.h2(styles)
+const H1 = styled.h1(() => [styles])
+const H2 = styled.h2(() => [styles])
 
 interface TitleProps {
-  children: ReactNode
-  h1?: boolean
+  children: string
+  level?: 'h1' | 'h2'
   white?: boolean
 }
 
 const Title: FC<TitleProps> = ({
   children,
-  h1 = false,
+  level = 'h2',
   white = false,
   ...rest
 }) => {
-  const Component = !!h1 ? H1 : H2
-
+  const Component = level === 'h1' ? H1 : H2
+  const [ref, inView] = useInView({
+    threshold: 1,
+    triggerOnce: true,
+  })
   return (
-    <Component h1={h1} white={white} {...rest}>
+    <Component white={white} ref={ref} inView={inView} {...rest}>
       {children}
     </Component>
   )

@@ -17,6 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@common/*": ["components/common/*"],
+      "@frontPage/*": ["components/frontPage/*"],
+      "@content/*": ["components/content/*"],
       "@functions": ["lib/functions"]
     }
   },

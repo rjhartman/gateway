@@ -1,6 +1,5 @@
-import type { VFC } from 'react'
-import tw from 'twin.macro'
-import styled from 'styled-components'
+import type { FC } from 'react'
+import tw, { styled } from 'twin.macro'
 import AnimateHeight from 'react-animate-height'
 
 interface Props {
@@ -14,7 +13,7 @@ interface Props {
 const Wrapper = tw.div`flex flex-col gap-2`
 
 const inputStyles = ({ valid }: { valid: boolean }) => [
-  tw` focus:(outline-none border-primary) duration-300 transition-colors ease-in-out flex items-start justify-start w-full p-1 text-lg border-b-2 bg-transparent`,
+  tw`focus:(outline-none border-primary) duration-300 transition-colors ease-in-out flex items-start justify-start w-full p-1 text-lg border-b-2 bg-transparent`,
   valid === false && tw`border-red-500!`,
   valid === true && tw`border-grey`,
 ]
@@ -23,7 +22,7 @@ const TextArea = styled.textarea(() => [inputStyles, tw`min-h-[8rem] border-2`])
 
 const Error = tw.span`text-red-500`
 
-const FormInput: VFC<Props> = ({
+const FormInput: FC<Props> = ({
   type,
   name,
   errorMessage,
@@ -35,7 +34,8 @@ const FormInput: VFC<Props> = ({
   return (
     <Wrapper>
       <label htmlFor={name}>{label}</label>
-      <Input ref={inputRef} type={type} valid={!errorMessage} {...rest}></Input>
+      {/* @ts-ignore */}
+      <Input ref={inputRef} type={type} valid={!errorMessage} {...rest} />
       <AnimateHeight height={!!errorMessage ? 'auto' : 0}>
         <Error>{errorMessage}</Error>
       </AnimateHeight>

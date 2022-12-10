@@ -1,8 +1,17 @@
-import { createClient } from 'next-sanity'
-import { SanityClient } from '@sanity/client'
-import { useNextSanityImage } from 'next-sanity-image'
-import { UseNextSanityImageProps } from 'next-sanity-image/dist/types'
-import { SanityImageSource } from '@sanity/image-url/lib/types/types'
+/**
+ * Returns a configured Sanity client.
+ *
+ * @returns {sanityClient} - The configured Sanity client. *
+ * */
+import sanityClient from '@sanity/client'
+export const configuredSanityClient = sanityClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  useCdn: true,
+  apiVersion: '2021-10-21',
+  token: process.env.NEXT_PUBLIC_SANITY_TOKEN,
+  withCredentials: true,
+})
 
 /**
  * Returns the cleaned phone number to be used in the href.
@@ -13,18 +22,3 @@ import { SanityImageSource } from '@sanity/image-url/lib/types/types'
 export function cleanPhoneNumber(rawNumber: string): string {
   return rawNumber.replace(/\D/g, '')
 }
-
-/**
- * Returns the client used to fetch data from Sanity.
- *
- * @returns {SanityClient} - The client used to fetch data from Sanity.
- */
-export const client: SanityClient = createClient({
-  projectId: '3zzetd36',
-  dataset: 'production',
-  apiVersion: '2021-10-21',
-  useCdn: false,
-})
-
-export const imageProps = (image: SanityImageSource | null) =>
-  useNextSanityImage(client, image) as UseNextSanityImageProps
