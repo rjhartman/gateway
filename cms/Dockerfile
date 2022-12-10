@@ -4,9 +4,10 @@ WORKDIR /opt/cms
 
 COPY . .
 
-RUN npm install -g @sanity/cli \
-    npm install;
+RUN yarn global add @sanity/cli
+RUN yarn install
+RUN sanity install
 
 # Port 3333 is the default port for Sanity at the time of writing.
 # Just to be safe, explicitly run on port 3333 to match the docker compose yaml
-CMD ["npm", "start", "--", "--host=0.0.0.0", "--port=3333"]
+CMD ["yarn", "start", "--host=0.0.0.0", "--port=3333"]
