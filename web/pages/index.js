@@ -1,22 +1,19 @@
 import sanityClient from '@sanity/client'
 import tw from 'twin.macro'
-import Layout from '@common/Layout'
-import FrontHero from 'components/frontPage/FrontHero'
 import groq from 'groq'
 
-const configuredSanityClient = sanityClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  useCdn: true,
-  apiVersion: '2021-10-21',
-})
+import { configuredSanityClient } from '@functions'
+import Layout from '@common/Layout'
+import FrontHero from '@frontPage/FrontHero'
+import CompanyHistory from '@frontPage/CompanyHistory'
 
 const Div = tw.div`h-[130vh] w-full bg-pink-300`
 export default function Home({ data }) {
   return (
     <Layout>
-      <FrontHero title={data.hero.title} subtitle={data.hero.subtitle} />
+      <FrontHero {...data.hero} />
       <Div />
+      <CompanyHistory {...data.companyHistory} />
     </Layout>
   )
 }
@@ -28,7 +25,7 @@ export const getServerSideProps = async function () {
   // That's not real type safety, and defeats the purpose of using Typescript at all.
   // Made this a js file for now, to kick the can down the road and decide if it's worth it.
   const [data] = await configuredSanityClient.fetch(groq`
-    *[_type == 'homePage'] { hero }
+    *[_type == 'homePage'] { hero, companyHistory }
   `)
   return {
     props: {
