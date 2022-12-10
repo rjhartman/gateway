@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import NLink from 'next/link'
 
 import Form from '@common/Form'
+import Title from '@common/Title'
 
 const Section = tw.footer`w-full bg-font py-12 flex flex-col px-12`
 const Top = tw.div`flex flex-row  mb-12`
@@ -24,7 +25,7 @@ const Footer: VFC<Props> = ({ ...rest }) => {
     <Section {...rest}>
       <Top>
         <Half tw="gap-6">
-          <FormTitle>Address</FormTitle>
+          <Title white>Address</Title>
           <Address>
             <span>Gateway Travel Plaza</span>
             <span>11653 Lincoln Highway</span>
@@ -39,7 +40,7 @@ const Footer: VFC<Props> = ({ ...rest }) => {
         </Half>
         <Half>
           <div tw="w-full flex flex-col items-center gap-12 max-w-[30rem]">
-            <FormTitle>Contact Us</FormTitle>
+            <Title white>Contact Us</Title>
             <Form />
           </div>
         </Half>
