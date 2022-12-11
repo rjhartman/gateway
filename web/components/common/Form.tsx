@@ -103,8 +103,8 @@ const Form: FC<FormType> = ({ formCarryID, ...rest }) => {
         <Input key={i} inputRef={ref} {...rest} />
       ))}
       <Submit type="submit" formNoValidate value="submit" />
-      <AnimateHeight height={!!response ? 'auto' : 0}>
-        <Response>{state.response.title}</Response>
+      <AnimateHeight height={!!state.response?.title ? 'auto' : 0}>
+        <Response>{state.response?.title}</Response>
       </AnimateHeight>
     </FormComponent>
   )
