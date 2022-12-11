@@ -1,21 +1,11 @@
 import type { FC } from 'react'
 import tw from 'twin.macro'
 import Image from '@common/SanityImage'
+import { FrontHero } from 'lib/schema'
 
 const Section = tw.section`w-full max-w-full h-screen text-white font-bold text-4xl flex flex-col items-center justify-center overflow-hidden`
 
-interface FrontHeroProps {
-  title: 'string'
-  subtitle: 'string'
-  background: any
-}
-
-const FrontHero: FC<FrontHeroProps> = ({
-  title,
-  subtitle,
-  background,
-  ...rest
-}) => {
+const FrontHero: FC<FrontHero> = ({ title, subtitle, background, ...rest }) => {
   return (
     <Section {...rest}>
       <Image

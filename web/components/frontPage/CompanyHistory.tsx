@@ -5,18 +5,13 @@ import Title from '@common/Title'
 import SanityImage from '@common/SanityImage'
 import Content from '@common/Content'
 import AnimateIn from '@common/AnimateIn'
+import type { CompanyHistory as CompanyHistoryType } from 'lib/schema'
 
 const Section = tw.section`flex flex-col items-center relative w-full py-20 gap-20`
 const Bottom = tw.div`flex w-full px-12 gap-12 relative`
 const Half = tw.div`flex flex-col justify-center w-1/2`
 
-interface CompanyHistoryProps {
-  history: any
-  image: any
-  title: string
-}
-
-const CompanyHistory: FC<CompanyHistoryProps> = ({
+const CompanyHistory: FC<CompanyHistoryType> = ({
   history,
   image,
   title,
@@ -24,7 +19,7 @@ const CompanyHistory: FC<CompanyHistoryProps> = ({
 }) => {
   return (
     <Section {...rest}>
-      <Title>{title}</Title>
+      <Title>{title ?? ''}</Title>
       <Bottom>
         <Half>
           <AnimateIn direction="right" duration={1000} distance="100px">

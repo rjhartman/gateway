@@ -30,5 +30,8 @@
     "sanity-plugin-seo-tools": "^3.0.0",
     "styled-components": "^5.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "prettier": "^2.8.1",
+    "sanity-codegen": "^0.9.8"
+  }
 }
