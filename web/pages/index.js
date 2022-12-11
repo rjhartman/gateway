@@ -9,9 +9,8 @@ import CompanyHistory from '@frontPage/CompanyHistory'
 
 const Div = tw.div`h-[130vh] w-full bg-pink-300`
 export default function Home({ homePage, logos }) {
-  console.log(logos)
   return (
-    <Layout>
+    <Layout logos={logos}>
       <FrontHero {...homePage.hero} />
       <Div />
       <CompanyHistory {...homePage.companyHistory} />
@@ -26,12 +25,20 @@ export const getServerSideProps = async function () {
   // That's not real type safety, and defeats the purpose of using Typescript at all.
   // Made this a js file for now, to kick the can down the road and decide if it's worth it.
 
-  const [homePage] = await configuredSanityClient.fetch(groq`
-  *[_type == 'homePage'] { hero, companyHistory }
+  const { homePage, logos } = await configuredSanityClient.fetch(groq`
+    { 
+      'homePage': *[_type == 'homePage'][0]{ hero, companyHistory },
+      'logos': *[_type == 'logos'][0] {
+        logo {
+          asset -> 
+        },
+        hcLogo {
+          asset ->
+        }
+      }
+    }
   `)
-  const [logos] = await configuredSanityClient.fetch(groq`
-  *[_type == 'logos'] 
-  `)
+
   return {
     props: {
       homePage,

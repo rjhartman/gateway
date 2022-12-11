@@ -8,11 +8,12 @@ import Image from '@common/SanityImage'
 const Section = tw.section``
 
 interface LogoProps {
-  data?: any
+  logo?: any
+  hcLogo?: any
 }
 
-const Logo: FC<LogoProps> = ({ data, ...rest }) => {
-  return <Section {...rest}></Section>
+const Logo: FC<LogoProps> = ({ logo, hcLogo, ...rest }) => {
+  return <Image image={hcLogo} {...rest}></Image>
 }
 
 export default Logo
