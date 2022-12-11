@@ -1,4 +1,4 @@
-import type { VFC } from 'react'
+import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import tw from 'twin.macro'
 import styled from 'styled-components'
@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 import DesktopNav from '@common/DesktopNav'
 import MobileNav from '@common/MobileNav'
+import Logo from '@common/Logo'
 import { cleanPhoneNumber } from '@functions'
 
 const Component = styled.header<{ small: boolean }>(({ small }) => [
@@ -17,9 +18,7 @@ const Component = styled.header<{ small: boolean }>(({ small }) => [
 
 const Number = tw.a`text-xl font-poppins hover:text-primary`
 const LogoWrapper = styled(Link)`
-  ${tw`xl:(w-56) flex items-center justify-center h-full`}
-  // delete this later after image is used
-  ${tw`bg-primary font-bodoni text-xl font-bold text-center`}
+  ${tw`flex items-center justify-center w-56 h-full`}
 `
 const NavButton = tw.button`md:hidden flex flex-col shadow-xl justify-center items-center h-16 w-16 border-2 border-offBlack rounded-lg bg-offBlack font-bold text-xs text-white px-3 hover:(text-offBlack bg-white [div]:bg-offBlack) duration-500 ease-in-out`
 
@@ -73,11 +72,14 @@ const navItems = [
   },
 ]
 
-interface FilterProps {}
+interface FilterProps {
+  logos: any
+}
 
-const Header: VFC<FilterProps> = ({ ...rest }) => {
+const Header: FC<FilterProps> = ({ logos, ...rest }) => {
   const [smallHeader, setSmallHeader] = useState<boolean>(false)
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
+  const { logo, hcLogo } = logos
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,7 +97,9 @@ const Header: VFC<FilterProps> = ({ ...rest }) => {
 
   return (
     <Component {...rest} small={smallHeader}>
-      <LogoWrapper href="/">Gateway Logo</LogoWrapper>
+      <LogoWrapper href="/">
+        <Logo logo={logo} hcLogo={hcLogo} />
+      </LogoWrapper>
       <div tw="hidden md:flex flex-col items-end gap-2">
         <DesktopNav navItems={navItems} />
         <Number href={`tel:${cleanPhoneNumber(phoneNumber)}`}>

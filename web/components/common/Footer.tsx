@@ -4,13 +4,13 @@ import styled from 'styled-components'
 import NLink from 'next/link'
 
 import Form from '@common/Form'
+import Title from '@common/Title'
 
 const Section = tw.footer`w-full bg-font py-12 flex flex-col px-12`
 const Top = tw.div`flex flex-row  mb-12`
-const Half = tw.div`flex flex-col w-1/2 items-center justify-center text-white`
+const Half = tw.div`flex flex-col w-1/2 items-center justify-between text-white`
 const Copyright = tw.small`text-sm text-white flex gap-1`
 const Link = tw(NLink)`duration-500 ease-in-out hover:text-primary`
-const FormTitle = tw.h3`text-7xl text-white font-allita relative flex flex-col items-center text-center pb-4 after:([content: ""] bg-primary h-1 w-3/4 absolute bottom-0 )`
 
 const Address = tw.address`not-italic text-center text-2xl gap-1 flex flex-col`
 const Map = styled.div`
@@ -24,7 +24,7 @@ const Footer: VFC<Props> = ({ ...rest }) => {
     <Section {...rest}>
       <Top>
         <Half tw="gap-6">
-          <FormTitle>Address</FormTitle>
+          <Title white>Address</Title>
           <Address>
             <span>Gateway Travel Plaza</span>
             <span>11653 Lincoln Highway</span>
@@ -39,7 +39,7 @@ const Footer: VFC<Props> = ({ ...rest }) => {
         </Half>
         <Half>
           <div tw="w-full flex flex-col items-center gap-12 max-w-[30rem]">
-            <FormTitle>Contact Us</FormTitle>
+            <Title white>Contact Us</Title>
             <Form />
           </div>
         </Half>

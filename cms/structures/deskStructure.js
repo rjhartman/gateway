@@ -3,9 +3,12 @@ import React from 'react'
 import S from '@sanity/desk-tool/structure-builder'
 import { SeoToolsPane } from 'sanity-plugin-seo-tools'
 import { PortableText } from '@portabletext/react'
+
 import { GoSettings } from 'react-icons/go'
 import { RiImageFill } from 'react-icons/ri'
 import { HiInformationCircle } from 'react-icons/hi'
+import { IoHome } from 'react-icons/io5'
+import { SiEquinixmetal } from 'react-icons/si'
 
 export const getDefaultDocumentNode = ({ schemaType }) => {
   return S.document().views([
@@ -41,8 +44,15 @@ export default () =>
     .title('Content')
     .items([
       ...S.documentTypeListItems().filter(
-        (listItem) => !['companyInfo', 'logos'].includes(listItem.getId())
+        (listItem) =>
+          !['companyInfo', 'logos', 'homePage', 'metaData'].includes(
+            listItem.getId()
+          )
       ),
+      S.listItem()
+        .title('Home Page')
+        .icon(IoHome)
+        .child(S.document().schemaType('homePage').documentId('homePage')),
       S.divider(),
       S.listItem()
         .title('Site Settings')
@@ -54,6 +64,12 @@ export default () =>
             // Add items to the array
             // Each will pull one of our new singletons
             .items([
+              S.listItem()
+                .title('Meta Data')
+                .icon(SiEquinixmetal)
+                .child(
+                  S.document().schemaType('metaData').documentId('metaData')
+                ),
               S.listItem()
                 .title('Company Info')
                 .icon(HiInformationCircle)

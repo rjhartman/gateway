@@ -9,11 +9,16 @@ import page from './documents/page'
 import logos from './documents/logos'
 import companyInfo from './documents/companyInfo'
 import navigation from './documents/navigation'
+import homePage from './documents/homePage'
+import metaData from './documents/metaData'
 
 // objects
 import seo from './objects/seo'
 import navItem from './objects/navItem'
 import link from './objects/link'
+import frontHero from './objects/frontHero'
+import blockContent from './objects/blockContent'
+import companyHistory from './objects/companyHistory'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -27,10 +32,15 @@ export default createSchema({
     navigation,
     logos,
     companyInfo,
+    homePage,
+    metaData,
+    companyHistory,
 
     // objects
     seo,
     navItem,
     link,
+    frontHero,
+    blockContent,
   ]),
 })
