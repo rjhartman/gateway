@@ -19,6 +19,7 @@ import link from './objects/link'
 import frontHero from './objects/frontHero'
 import blockContent from './objects/blockContent'
 import companyHistory from './objects/companyHistory'
+import services from './objects/services'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -42,5 +43,6 @@ export default createSchema({
     link,
     frontHero,
     blockContent,
+    services,
   ]),
 })
