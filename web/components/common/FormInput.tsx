@@ -35,7 +35,14 @@ const FormInput: FC<Props> = ({
     <Wrapper>
       <label htmlFor={name}>{label}</label>
       {/* @ts-ignore */}
-      <Input ref={inputRef} type={type} valid={!errorMessage} {...rest} />
+      <Input
+        ref={inputRef}
+        name={name}
+        id={name}
+        type={type}
+        valid={!errorMessage}
+        {...rest}
+      />
       <AnimateHeight height={!!errorMessage ? 'auto' : 0}>
         <Error>{errorMessage}</Error>
       </AnimateHeight>

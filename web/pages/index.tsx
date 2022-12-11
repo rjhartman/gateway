@@ -10,10 +10,10 @@ import { GetStaticProps, NextPage } from 'next'
 
 const Div = tw.div`h-[130vh] w-full bg-pink-300`
 
-const Home: NextPage<Props> = ({ homePage, logos }) => {
+const Home: NextPage<Props> = ({ homePage, logos, form }) => {
   const { hero, companyHistory } = homePage
   return (
-    <Layout logos={logos}>
+    <Layout logos={logos} form={form}>
       {hero && <FrontHero {...hero} />}
       {companyHistory && <CompanyHistory {...companyHistory} />}
     </Layout>
@@ -34,11 +34,13 @@ export const getStaticProps = async function () {
 
   const [homePage] = await sanityClient.getAll('homePage')
   const [logos] = await sanityClient.getAll('logos')
+  const [form] = await sanityClient.getAll('form')
 
   return {
     props: {
       homePage,
       logos,
+      form,
     },
   }
 }

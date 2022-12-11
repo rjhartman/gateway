@@ -369,6 +369,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@formcarry/react@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@formcarry/react/-/react-1.0.3.tgz#6a664f7bd6ab0c09c9f317392980db95cdde5be1"
+  integrity sha512-bJ+vv+cic8pba1+zL0rubQAxnYhZRCJLz1Y1oEqN2FickShLMHIfmVt4wB0wlovgaeZxwEFxjbiIxv4MplL6vg==
+
 "@humanwhocodes/config-array@^0.11.6":
   version "0.11.7"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.7.tgz"

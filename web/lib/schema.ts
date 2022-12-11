@@ -302,6 +302,22 @@ export interface MetaData extends SanityDocument {
   frontPage?: SanityReference<Page>;
 }
 
+/**
+ * Form
+ *
+ *
+ */
+export interface Form extends SanityDocument {
+  _type: "form";
+
+  /**
+   * FormCarry ID — `string`
+   *
+   *
+   */
+  formCarryID: string;
+}
+
 export type CompanyHistory = {
   _type: "companyHistory";
   /**
@@ -447,4 +463,5 @@ export type Documents =
   | Logos
   | CompanyInfo
   | HomePage
-  | MetaData;
+  | MetaData
+  | Form;

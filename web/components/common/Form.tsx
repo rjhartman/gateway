@@ -1,46 +1,54 @@
-import type { VFC } from 'react'
+import type { FC } from 'react'
 import { useState, useRef } from 'react'
 import tw from 'twin.macro'
 import styled from 'styled-components'
 import AnimateHeight from 'react-animate-height'
 
 import Input from '@common/FormInput'
+import { Form as FormType } from 'lib/schema'
+import { useForm } from '@formcarry/react'
 
 const fields = [
   {
     label: 'Name',
-    name: 'name',
+    name: 'Name',
     type: 'text',
     required: true,
   },
   {
     label: 'Email',
-    name: 'email',
+    name: 'Email',
     type: 'email',
     required: true,
   },
   {
     label: 'Phone',
-    name: 'phone',
+    name: 'Phone',
     type: 'tel',
     required: true,
   },
   {
     label: 'Message',
-    name: 'message',
+    name: 'Message',
     type: 'textarea',
     required: true,
   },
 ]
 
-interface Props {}
-
 const FormComponent = tw.form`flex flex-col w-full gap-6`
 const Submit = tw.input`w-full p-2 bg-primary! text-white duration-500 ease-in-out text-lg cursor-pointer font-bold hover:bg-secondary! rounded-lg mt-4`
 const Response = styled.div(() => [])
 
-const Form: VFC<Props> = ({ ...rest }) => {
-  const [response, setResponse] = useState('')
+const Form: FC<FormType> = ({ formCarryID, ...rest }) => {
+  const { state, submit } = useForm({
+    id: formCarryID,
+    extraData: {
+      location: 'Footer',
+    },
+  })
+
+  console.log(formCarryID)
+
   const [statefulFields, setStatefullFields] = useState(
     fields.map((field) => {
       return {
@@ -85,14 +93,7 @@ const Form: VFC<Props> = ({ ...rest }) => {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (validateFields()) {
-      const formData = statefulFields.map((field) => ({
-        name: field.name,
-        value: field.ref.current?.value,
-      }))
-      console.log(formData)
-    } else {
-      console.log('invalid')
-      console.log(statefulFields)
+      submit(e)
     }
   }
 
@@ -103,7 +104,7 @@ const Form: VFC<Props> = ({ ...rest }) => {
       ))}
       <Submit type="submit" formNoValidate value="submit" />
       <AnimateHeight height={!!response ? 'auto' : 0}>
-        <Response>{response}</Response>
+        <Response>{state.response.title}</Response>
       </AnimateHeight>
     </FormComponent>
   )
