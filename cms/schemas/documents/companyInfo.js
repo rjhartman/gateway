@@ -41,5 +41,13 @@ export default {
       title: 'Maps Link',
       type: 'url',
     },
+    {
+      name: 'mapsEmbed',
+      title: 'Maps Embed',
+      type: 'code',
+      options: {
+        language: 'html',
+      },
+    },
   ],
 }

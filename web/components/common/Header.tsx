@@ -4,6 +4,7 @@ import tw from 'twin.macro'
 import styled from 'styled-components'
 import Link from 'next/link'
 
+import type { Logos as LogosType } from 'lib/schema'
 import DesktopNav from '@common/DesktopNav'
 import MobileNav from '@common/MobileNav'
 import Logo from '@common/Logo'
@@ -24,7 +25,6 @@ const NavButton = tw.button`md:hidden flex flex-col shadow-xl justify-center ite
 
 const Line = tw.div`flex bg-white h-0.5 w-full duration-500 ease-in-out my-[3px] [&:nth-child(2)]:(translate-x-1)`
 
-const phoneNumber = '(555) 555-5555'
 const navItems = [
   {
     title: 'History',
@@ -73,10 +73,11 @@ const navItems = [
 ]
 
 interface FilterProps {
-  logos: any
+  logos: LogosType
+  phoneNumber: string | undefined
 }
 
-const Header: FC<FilterProps> = ({ logos, ...rest }) => {
+const Header: FC<FilterProps> = ({ logos, phoneNumber, ...rest }) => {
   const [smallHeader, setSmallHeader] = useState<boolean>(false)
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
   const { logo, hcLogo } = logos
@@ -98,13 +99,15 @@ const Header: FC<FilterProps> = ({ logos, ...rest }) => {
   return (
     <Component {...rest} small={smallHeader}>
       <LogoWrapper href="/">
-        <Logo logo={logo} hcLogo={hcLogo} />
+        <Logo logo={logo} hcLogo={hcLogo} header useHC={smallHeader} />
       </LogoWrapper>
       <div tw="hidden md:flex flex-col items-end gap-2">
         <DesktopNav navItems={navItems} />
-        <Number href={`tel:${cleanPhoneNumber(phoneNumber)}`}>
-          {phoneNumber}
-        </Number>
+        {!!phoneNumber && (
+          <Number href={`tel:${cleanPhoneNumber(phoneNumber)}`}>
+            {phoneNumber}
+          </Number>
+        )}
       </div>
       <NavButton onClick={() => setMenuOpen(!menuOpen)}>
         <Line />

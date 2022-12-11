@@ -1,4 +1,4 @@
-import type { VFC } from 'react'
+import type { FC } from 'react'
 import tw from 'twin.macro'
 import styled from 'styled-components'
 import NLink from 'next/link'
@@ -16,26 +16,37 @@ const Address = tw.address`not-italic text-center text-2xl gap-1 flex flex-col`
 const Map = styled.div`
   ${tw`border-2 w-full max-w-[30rem] aspect-[4/3] border-offBlack [iframe]:(w-full h-full)`}
 `
-// const Shadow = tw.div`absolute top-0 left-0 w-full h-full from-primary to-offBlack bg-gradient-to-br z-10 opacity-0 duration-500 ease-in-out`
-interface Props {}
+const Directions = tw.a`text-2xl text-center duration-500 ease-in-out hover:text-primary`
+interface Props {
+  address: string[] | undefined
+  mapsLink: string | undefined
+  mapsEmbed:
+    | {
+        _type: string
+        code: string
+        language: string
+      }
+    | undefined
+}
 
-const Footer: VFC<Props> = ({ ...rest }) => {
+const Footer: FC<Props> = ({ address, mapsLink, mapsEmbed, ...rest }) => {
+  console.log(mapsEmbed)
   return (
     <Section {...rest}>
       <Top>
         <Half tw="gap-6">
           <Title white>Address</Title>
           <Address>
-            <span>Gateway Travel Plaza</span>
-            <span>11653 Lincoln Highway</span>
-            <span>Breezewood, PA 15533</span>
+            {address?.map((line, i) => (
+              <span key={i}>{line}</span>
+            ))}
           </Address>
-          <Map>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.3675861545303!2d-78.23662282353231!3d40.00023608088264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89ca34f0c91e2b1d%3A0xc6e6c40a8072f73d!2sGateway%20Travel%20Plaza!5e0!3m2!1sen!2sus!4v1670198522432!5m2!1sen!2sus"
-              loading="lazy"
-            ></iframe>
-          </Map>
+          {!!mapsLink && !mapsEmbed && (
+            <Directions href={mapsLink}>Map + Directions</Directions>
+          )}
+          {!!mapsEmbed && (
+            <Map dangerouslySetInnerHTML={{ __html: mapsEmbed.code }} />
+          )}
         </Half>
         <Half>
           <div tw="w-full flex flex-col items-center gap-12 max-w-[30rem]">

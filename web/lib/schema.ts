@@ -240,6 +240,13 @@ export interface CompanyInfo extends SanityDocument {
    *
    */
   mapsLink?: string;
+
+  /**
+   * Maps Embed — `code`
+   *
+   *
+   */
+  mapsEmbed?: Code;
 }
 
 /**
@@ -508,3 +515,10 @@ export type Documents =
   | CompanyInfo
   | HomePage
   | MetaData;
+
+/**
+ * This interface is a stub. It was referenced in your sanity schema but
+ * the definition was not actually found. Future versions of
+ * sanity-codegen will let you type this explicity.
+ */
+type Code = any;

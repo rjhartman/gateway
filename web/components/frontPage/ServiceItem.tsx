@@ -28,7 +28,6 @@ const ServiceItem: FC<ServiceItemProps> = ({
   description,
   ...rest
 }) => {
-  console.log(image)
   return (
     <Item flip={flip} {...rest}>
       {/* {!!image && <Image {...image} />} */}
