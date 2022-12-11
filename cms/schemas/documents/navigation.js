@@ -14,6 +14,7 @@ export default {
       title: 'Name',
       type: 'string',
       validation: (Rule) => Rule.required().error('Missing name'),
+      codegen: { required: true },
     },
     {
       name: 'items',

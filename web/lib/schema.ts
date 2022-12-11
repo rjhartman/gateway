@@ -56,7 +56,7 @@ export interface Page extends SanityDocument {
    *
    *
    */
-  slug?: { _type: "slug"; current: string };
+  slug: { _type: "slug"; current: string };
 
   /**
    * Parent — `reference`
@@ -105,7 +105,7 @@ export interface Navigation extends SanityDocument {
    *
    *
    */
-  name?: string;
+  name: string;
 
   /**
    * Navigation Items — `array`
@@ -135,7 +135,7 @@ export interface Logos extends SanityDocument {
    *
    *
    */
-  logo?: {
+  logo: {
     _type: "image";
     asset: SanityReference<SanityImageAsset>;
     crop?: SanityImageCrop;
@@ -204,7 +204,7 @@ export interface CompanyInfo extends SanityDocument {
    *
    *
    */
-  name?: string;
+  name: string;
 
   /**
    * Phone Number — `string`
@@ -270,6 +270,13 @@ export interface HomePage extends SanityDocument {
    *
    */
   companyHistory?: CompanyHistory;
+
+  /**
+   * Services — `services`
+   *
+   *
+   */
+  services?: Services;
 }
 
 /**
@@ -309,7 +316,7 @@ export type CompanyHistory = {
    *
    *
    */
-  title?: string;
+  title: string;
 
   /**
    * History — `blockContent`
@@ -407,7 +414,7 @@ export type Link = {
    *
    *
    */
-  itemType?: "internal" | "external" | "placeholder";
+  itemType?: "internal" | "external";
 };
 
 export type FrontHero = {
@@ -440,6 +447,59 @@ export type FrontHero = {
 };
 
 export type BlockContent = Array<SanityKeyed<SanityBlock>>;
+
+export type Services = {
+  _type: "services";
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  title: string;
+
+  /**
+   * Services — `array`
+   *
+   *
+   */
+  services?: Array<
+    SanityKeyed<{
+      _type: "service";
+      /**
+       * Title — `string`
+       *
+       *
+       */
+      title: string;
+
+      /**
+       * Description — `blockContent`
+       *
+       *
+       */
+      description?: BlockContent;
+
+      /**
+       * Image — `image`
+       *
+       *
+       */
+      image?: {
+        _type: "image";
+        asset: SanityReference<SanityImageAsset>;
+        crop?: SanityImageCrop;
+        hotspot?: SanityImageHotspot;
+      };
+
+      /**
+       * Link — `link`
+       *
+       *
+       */
+      link?: Link;
+    }>
+  >;
+};
 
 export type Documents =
   | Page

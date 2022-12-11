@@ -36,8 +36,9 @@ export default {
                 .replace(/^-+/, '')
                 .replace(/-+$/, ''),
       },
+      codegen: { required: true },
       validation: (Rule) => [
-        Rule.required().error('Missing slug'),
+        Rule.required(),
         Rule.custom((slug) => {
           if (slug.current.startsWith('/')) {
             return true

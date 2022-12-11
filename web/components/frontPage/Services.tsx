@@ -1,26 +1,24 @@
 import type { FC, ReactNode } from 'react'
 import tw from 'twin.macro'
+import { Services as ServicesType } from 'lib/schema'
 
 import Title from '@common/Title'
+import Item from '@frontPage/ServiceItem'
 
 const Section = tw.section`flex flex-col items-center w-full relative py-20 border border-red-500 px-32 gap-12`
+const List = tw.ul`flex flex-col w-full gap-20 relative`
 
-interface ServicesProps {
-  title: string
-}
-
-const Services: FC<ServicesProps> = ({ title, ...rest }) => {
-  const services = [{}, {}, {}, {}, {}, {}, {}, {}, {}]
+const Services: FC<ServicesType> = ({ title, services, ...rest }) => {
   return (
     <Section {...rest}>
       <Title>{title}</Title>
-      <div tw="grid grid-cols-3 gap-8 w-full">
-        {services.map((service, index) => (
-          <div key={index} tw="border border-red-500 h-[10rem]">
-            <h1>Service {index + 1}</h1>
-          </div>
+      <List>
+        {services?.map((service, i) => (
+          <li key={i}>
+            <Item flip={!!(i % 2)} {...service} />
+          </li>
         ))}
-      </div>
+      </List>
     </Section>
   )
 }

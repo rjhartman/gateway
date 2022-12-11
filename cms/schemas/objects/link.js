@@ -1,3 +1,8 @@
+const customValidation = (field, context, value) => {
+  console.log(context)
+  return context.parent.itemType === value && field === undefined
+}
+
 export default {
   name: 'link',
   type: 'object',
@@ -26,7 +31,6 @@ export default {
         list: [
           { title: 'Internal Link', value: 'internal' },
           { title: 'External Link', value: 'external' },
-          { title: 'Placeholder', value: 'placeholder' },
         ],
         layout: 'radio',
         direction: 'horizontal',

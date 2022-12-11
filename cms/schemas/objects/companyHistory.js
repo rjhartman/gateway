@@ -8,6 +8,8 @@ export default {
       title: 'Title',
       type: 'string',
       initialValue: 'Company History',
+      validation: (Rule) => Rule.required(),
+      codegen: { required: true },
     },
     {
       name: 'history',

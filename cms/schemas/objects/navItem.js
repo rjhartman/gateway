@@ -13,7 +13,6 @@ export default {
       name: 'text',
       type: 'string',
       title: 'Navigation Text',
-      validation: (Rule) => Rule.required(),
     },
     {
       name: 'navigationItemUrl',
