@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formcarry/react": "^1.0.3",
     "@portabletext/react": "^2.0.0",
     "@sanity/client": "^3.4.1",
     "@types/node": "18.11.9",

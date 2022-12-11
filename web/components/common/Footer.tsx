@@ -1,10 +1,11 @@
-import type { VFC } from 'react'
+import type { FC } from 'react'
 import tw from 'twin.macro'
 import styled from 'styled-components'
 import NLink from 'next/link'
 
 import Form from '@common/Form'
 import Title from '@common/Title'
+import { Form as FormType } from 'lib/schema'
 
 const Section = tw.footer`w-full bg-font py-12 flex flex-col px-12`
 const Top = tw.div`flex flex-row  mb-12`
@@ -17,9 +18,11 @@ const Map = styled.div`
   ${tw`border-2 w-full max-w-[30rem] aspect-[4/3] border-offBlack [iframe]:(w-full h-full)`}
 `
 // const Shadow = tw.div`absolute top-0 left-0 w-full h-full from-primary to-offBlack bg-gradient-to-br z-10 opacity-0 duration-500 ease-in-out`
-interface Props {}
+interface Props {
+  form: FormType
+}
 
-const Footer: VFC<Props> = ({ ...rest }) => {
+const Footer: FC<Props> = ({ form, ...rest }) => {
   return (
     <Section {...rest}>
       <Top>
@@ -40,7 +43,7 @@ const Footer: VFC<Props> = ({ ...rest }) => {
         <Half>
           <div tw="w-full flex flex-col items-center gap-12 max-w-[30rem]">
             <Title white>Contact Us</Title>
-            <Form />
+            <Form {...form} />
           </div>
         </Half>
       </Top>

@@ -6,7 +6,7 @@ import { PortableText } from '@portabletext/react'
 
 import { GoSettings } from 'react-icons/go'
 import { RiImageFill } from 'react-icons/ri'
-import { HiInformationCircle } from 'react-icons/hi'
+import { HiInformationCircle, HiOutlineClipboardList } from 'react-icons/hi'
 import { IoHome } from 'react-icons/io5'
 import { SiEquinixmetal } from 'react-icons/si'
 
@@ -82,6 +82,10 @@ export default () =>
                 .title('Logos')
                 .icon(RiImageFill)
                 .child(S.document().schemaType('logos').documentId('logos')),
+              S.listItem()
+                .title('Form')
+                .icon(HiOutlineClipboardList)
+                .child(S.document().schemaType('form').documentId('form')),
             ])
         ),
     ])
