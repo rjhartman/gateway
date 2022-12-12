@@ -1,4 +1,3 @@
-import image from '../fields/customImage'
 import { CgWebsite } from 'react-icons/cg'
 
 export default {
@@ -26,15 +25,27 @@ export default {
       options: {
         source: 'title',
         slugify: (input) =>
-          input
-            .toLowerCase()
-            .replace(/\s+/g, '-')
-            .replace(/[^\w-]+/g, '')
-            .replace(/--+/g, '-')
-            .replace(/^-+/, '')
-            .replace(/-+$/, ''),
+          input.toLowerCase() === 'home'
+            ? '/'
+            : '/' +
+              input
+                .toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w-]+/g, '')
+                .replace(/--+/g, '-')
+                .replace(/^-+/, '')
+                .replace(/-+$/, ''),
       },
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => [
+        Rule.required().error('Missing slug'),
+        Rule.custom((slug) => {
+          if (slug.current.startsWith('/')) {
+            return true
+          } else {
+            return "Slug must start with '/'"
+          }
+        }),
+      ],
     },
     {
       name: 'parent',
@@ -56,9 +67,12 @@ export default {
       ],
     },
     {
-      ...image,
       name: 'featuredImage',
       title: 'Featured Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'publishStatus',

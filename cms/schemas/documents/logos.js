@@ -1,9 +1,8 @@
-import image from '../fields/customImage'
-
 export default {
   name: 'logos',
   title: 'Logos',
   type: 'document',
+  __experimental_actions: [/*"create"*/ 'update', /*'delete',*/ 'publish'],
   fields: [
     {
       name: 'name',
@@ -13,33 +12,47 @@ export default {
       initialValue: 'Logos',
     },
     {
-      ...image,
       name: 'logo',
       title: 'Logo',
-      validation: (Rule) => Rule.required(),
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
-      ...image,
       name: 'hcLogo',
       title: 'HC Logo',
       description: 'Used on light backgrounds.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
-      ...image,
       name: 'logoIcon',
       title: 'Logo Icon',
       description: 'Used on small screens.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
-      ...image,
       name: 'hcLogoIcon',
       title: 'HC Logo Icon',
       description: 'Used on small screens and light backgrounds.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'favicon',
       title: 'Favicon',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
   ],
 }
