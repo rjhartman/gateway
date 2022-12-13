@@ -1,5 +1,4 @@
 const customValidation = (field, context, value) => {
-  console.log(context)
   return context.parent.itemType === value && field === undefined
 }
 
