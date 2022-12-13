@@ -6,9 +6,9 @@ import NLink from 'next/link'
 import Form from '@common/Form'
 import Title from '@common/Title'
 
-const Section = tw.footer`w-full bg-font py-12 flex flex-col px-12`
-const Top = tw.div`flex flex-row  mb-12`
-const Half = tw.div`flex flex-col w-1/2 items-center justify-between text-white`
+const Section = tw.footer`w-full bg-font py-12 flex flex-col px-4 md:px-12`
+const Top = tw.div`flex flex-col lg:(flex-row  gap-12) gap-20 mb-12`
+const Half = tw.div`flex flex-col w-full lg:w-1/2 items-center justify-between text-white`
 const Copyright = tw.small`text-sm text-white flex gap-1`
 const Link = tw(NLink)`duration-500 ease-in-out hover:text-primary`
 
@@ -30,11 +30,10 @@ interface Props {
 }
 
 const Footer: FC<Props> = ({ address, mapsLink, mapsEmbed, ...rest }) => {
-  console.log(mapsEmbed)
   return (
     <Section {...rest}>
       <Top>
-        <Half tw="gap-6">
+        <Half tw="gap-12 lg:gap-6">
           <Title white>Address</Title>
           <Address>
             {address?.map((line, i) => (

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useInView } from 'react-intersection-observer'
 
 const styles = ({ white, inView }: { white: boolean; inView: boolean }) => [
-  tw`text-7xl font-allita relative flex flex-col items-center text-center pb-4 after:([content: ""] bg-primary h-1 absolute duration-700 ease-in-out bottom-0 )`,
+  tw`text-6xl sm:text-7xl font-allita relative flex flex-col items-center text-center pb-4 after:([content: ""] bg-primary h-1 absolute duration-700 ease-in-out bottom-0 )`,
   !!white ? tw`text-white` : tw`text-font`,
   !!inView ? tw`after:(w-3/4)` : tw`after:(w-0)`,
 ]
