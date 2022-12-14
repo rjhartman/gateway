@@ -2,7 +2,7 @@ export default {
   name: 'homePage',
   title: 'Home Page',
   type: 'document',
-  __experimental_actions: [/*"create"*/ 'update', /*'delete',*/ 'publish'],
+  __experimental_actions: ['create', 'update', /*'delete',*/ 'publish'],
   groups: [
     {
       title: 'Hero',
@@ -11,6 +11,10 @@ export default {
     {
       title: 'Company History',
       name: 'companyHistory',
+    },
+    {
+      title: 'Services',
+      name: 'services',
     },
   ],
   fields: [
@@ -32,6 +36,12 @@ export default {
       title: 'Company History',
       type: 'companyHistory',
       group: 'companyHistory',
+    },
+    {
+      name: 'services',
+      title: 'Services',
+      type: 'services',
+      group: 'services',
     },
   ],
 }

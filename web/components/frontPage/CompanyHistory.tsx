@@ -7,9 +7,9 @@ import Content from '@common/Content'
 import AnimateIn from '@common/AnimateIn'
 import type { CompanyHistory as CompanyHistoryType } from 'lib/schema'
 
-const Section = tw.section`flex flex-col items-center relative w-full py-20 gap-20`
-const Bottom = tw.div`flex w-full px-12 gap-12 relative`
-const Half = tw.div`flex flex-col justify-center w-1/2`
+const Section = tw.section`flex bg-offWhite flex-col items-center relative w-full py-20 gap-20`
+const Bottom = tw.div`flex flex-col lg:flex-row w-full px-4 md:px-12 gap-12 relative`
+const Half = tw.div`flex flex-col justify-center w-full lg:w-1/2`
 
 const CompanyHistory: FC<CompanyHistoryType> = ({
   history,

@@ -7,6 +7,7 @@ module.exports = {
         secondary: '#7E9869',
         grey: '#3D4D4D',
         offBlack: '#163930',
+        offWhite: '#FFFAFA',
         font: '#000000',
       },
       fontFamily: {
