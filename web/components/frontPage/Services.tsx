@@ -6,7 +6,7 @@ import { Services as ServicesType } from 'lib/schema'
 import Title from '@common/Title'
 import Item from '@frontPage/ServiceItem'
 
-const Section = tw.section`flex flex-col items-center w-full bg-offWhite relative py-20 px-12 xl:px-32 gap-12`
+const Section = tw.section`flex flex-col items-center w-full bg-offWhite relative px-4 md:px-12 py-20 xl:px-32 gap-12`
 const List = tw.ul`flex flex-col items-center w-full gap-20 relative`
 const ItemWrapper = styled.li(({ flip }: { flip: boolean }) => [
   tw`flex flex-col w-full max-w-[60rem]`,

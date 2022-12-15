@@ -67,7 +67,7 @@ const navItems = [
   },
   {
     title: 'Contact Us',
-    url: '#',
+    url: '/contact-us',
     children: [],
   },
 ]

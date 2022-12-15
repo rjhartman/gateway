@@ -11,6 +11,9 @@ const Wrapper = styled.div(
     duration,
     delay,
     blur,
+    mobileDuration,
+    mobileDistance,
+    mobileDirection,
   }: {
     inView: boolean
     direction: string
@@ -19,25 +22,42 @@ const Wrapper = styled.div(
     duration: number
     delay: number
     blur: boolean
+    mobileDuration: string
+    mobileDistance: string
+    mobileDirection: string
   }) => [
     !!blur && tw`blur-sm`,
     !!fade && tw`opacity-0`,
+
     css`
-      transition-duration: ${duration}ms;
+      transition-duration: ${mobileDuration}ms;
       transition-delay: ${delay}ms;
       transition-timing-function: ease-in-out;
+
+      @media (min-width: 640px) {
+        transition-duration: ${duration}ms;
+      }
+      @media (max-width: 639px) {
+        transform: translateX(0px) translateY(50px);
+      }
     `,
 
-    (direction === 'left' || direction === 'right') &&
+    ['left', 'right'].includes(direction || mobileDirection) &&
       css`
-        transform: translateX(${distance});
+        transform: translateX(${mobileDistance});
+        @media (min-width: 640px) {
+          transform: translateX(${distance});
+        }
       `,
-    (direction === 'up' || direction === 'down') &&
+    ['up', 'down'].includes(direction || mobileDirection) &&
       css`
-        transform: translateY(${distance});
+        transform: translateX(${mobileDistance});
+        @media (min-width: 640px) {
+          transform: translateY(${distance});
+        }
       `,
 
-    inView && tw`blur-0 translate-x-0 translate-y-0 opacity-100`,
+    inView && tw`blur-0 translate-x-0! translate-y-0! opacity-100 `,
   ]
 )
 
@@ -50,6 +70,9 @@ interface AnimateInProps {
   duration?: number
   delay?: number
   children: ReactNode
+  mobileDuration?: number
+  mobileDistance?: string
+  mobileDirection?: string
 }
 
 const AnimateIn: FC<AnimateInProps> = ({
@@ -60,6 +83,9 @@ const AnimateIn: FC<AnimateInProps> = ({
   fade = true,
   duration = 700,
   delay = 0,
+  mobileDuration = 500,
+  mobileDistance = '50px',
+  mobileDirection = 'up',
   children,
   ...rest
 }) => {
@@ -81,6 +107,9 @@ const AnimateIn: FC<AnimateInProps> = ({
       distance={distance}
       direction={direction}
       duration={duration}
+      mobileDuration={mobileDuration}
+      mobileDistance={mobileDistance}
+      mobileDirection={mobileDirection}
       {...rest}
     >
       {children}

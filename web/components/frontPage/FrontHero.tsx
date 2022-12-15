@@ -18,8 +18,8 @@ const FrontHero: FC<FrontHeroType> = ({
         alt="hero image"
         tw="object-cover brightness-[40%] absolute h-full w-full z-behind"
       />
-      <h1 tw="text-7xl">{title}</h1>
-      <h3 tw="text-4xl text-primary mt-2">{subtitle}</h3>
+      <h1 tw="text-5xl sm:text-7xl">{title}</h1>
+      <h3 tw="text-2xl sm:text-4xl text-primary mt-2">{subtitle}</h3>
     </Section>
   )
 }

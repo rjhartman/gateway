@@ -24,7 +24,7 @@ export default Home
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : T
 type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props']
 
-export const getStaticProps = async function () {
+export const getStaticProps = async () => {
   let [homePage] = await sanityClient.getAll('homePage')
   const [logos] = await sanityClient.getAll('logos')
   const [companyInfo] = await sanityClient.getAll('companyInfo')
