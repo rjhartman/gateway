@@ -17,6 +17,7 @@ export default {
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
+      codegen: { required: true },
     },
     {
       name: 'slug',
@@ -36,13 +37,19 @@ export default {
                 .replace(/-+$/, ''),
       },
       codegen: { required: true },
-      validation: (Rule) => [Rule.required()],
+
+      validation: (Rule) => Rule.required(),
+
     },
     {
       name: 'layout',
       title: 'Layout',
       type: 'string',
       initialValue: 'default',
+
+      codegen: { required: true },
+      validation: (Rule) => Rule.required(),
+
       options: {
         list: [
           { title: 'Default', value: 'default' },
