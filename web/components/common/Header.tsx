@@ -10,12 +10,14 @@ import MobileNav from '@common/MobileNav'
 import Logo from '@common/Logo'
 import { cleanPhoneNumber } from '@functions'
 
-const Component = styled.header<{ small: boolean }>(({ small }) => [
-  tw`border-offBlack h-[5rem] border-opacity-30 fixed top-0 left-0 flex z-excessive flex-row items-center justify-between w-full gap-4 px-4 py-2 duration-300 ease-in-out bg-white text-font border-b shadow-xl`,
-  !!small
-    ? tw`lg:(h-24 bg-opacity-100)`
-    : tw`lg:(h-36 bg-opacity-0 border-transparent shadow-none text-white)`,
-])
+const Component = styled.header<{ inner: boolean; small: boolean }>(
+  ({ inner, small }) => [
+    tw`border-offBlack h-[5rem] border-opacity-30 fixed top-0 left-0 flex z-excessive flex-row items-center justify-between w-full gap-4 px-4 py-2 duration-300 ease-in-out bg-white text-font border-b shadow-xl`,
+    !!small || !!inner
+      ? tw`bg-white! lg:(h-24 bg-opacity-100)`
+      : tw`lg:(h-36 bg-opacity-0 border-transparent shadow-none text-white)`,
+  ]
+)
 
 const Number = tw.a`text-xl font-poppins hover:text-primary font-semibold`
 const LogoWrapper = styled(Link)`
@@ -27,57 +29,63 @@ const Line = tw.div`flex bg-white h-0.5 w-full duration-500 ease-in-out my-[3px]
 
 const navItems = [
   {
-    title: 'History',
-    url: '#',
-    children: [],
-  },
-  {
-    title: 'Food & Fuel',
-    url: '#',
-    children: [
-      { title: 'Fuel', url: '#', children: [] },
-      { title: 'Resturants', url: '#', children: [] },
-    ],
+    title: 'Resturants',
+    url: '/resturants',
   },
   {
     title: 'Services',
     url: '#',
     children: [
       {
-        title: 'Conferences',
-        url: '#',
-        children: [],
+        title: 'Fuel and Trucker Services',
+        url: '/fuel-and-trucking-services',
       },
       {
         title: 'Lodging',
-        url: '#',
-        children: [],
+        url: '/lodging',
       },
       {
         title: 'Shopping',
-        url: '#',
-        children: [],
+        url: '/shopping',
       },
       {
         title: 'Bus Services',
+        url: '/bus-services',
+      },
+      {
+        title: 'Conferences',
+        url: '/conferences',
+      },
+    ],
+  },
+  {
+    title: 'Employment',
+    url: '#',
+    children: [
+      {
+        title: 'Employment Opportunities',
         url: '#',
-        children: [],
+      },
+      {
+        title: 'Current Employees',
+        url: '#',
       },
     ],
   },
   {
     title: 'Contact Us',
-    url: '#',
+    url: '/contact-us',
     children: [],
   },
 ]
 
 interface FilterProps {
   logos: LogosType
+  inner: boolean
   phoneNumber: string | undefined
 }
 
-const Header: FC<FilterProps> = ({ logos, phoneNumber, ...rest }) => {
+const Header: FC<FilterProps> = ({ inner, logos, phoneNumber, ...rest }) => {
   const [smallHeader, setSmallHeader] = useState<boolean>(false)
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
   const { logo, hcLogo } = logos
@@ -97,9 +105,14 @@ const Header: FC<FilterProps> = ({ logos, phoneNumber, ...rest }) => {
   }, [])
 
   return (
-    <Component {...rest} small={smallHeader}>
+    <Component {...rest} inner={inner} small={smallHeader}>
       <LogoWrapper href="/">
-        <Logo logo={logo} hcLogo={hcLogo} header useHC={smallHeader} />
+        <Logo
+          logo={logo}
+          hcLogo={hcLogo}
+          header
+          $usehc={smallHeader || inner}
+        />
       </LogoWrapper>
       <div tw="hidden md:flex flex-col items-end gap-2">
         <DesktopNav navItems={navItems} />

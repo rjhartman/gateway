@@ -33,7 +33,6 @@ const ServiceItem: FC<ServiceItemProps> = ({
   description,
   ...rest
 }) => {
-  !!image && console.log(image)
   return (
     <AnimateIn
       direction={flip ? 'left' : 'right'}
@@ -47,8 +46,6 @@ const ServiceItem: FC<ServiceItemProps> = ({
             tw="md:max-w-[15rem] lg:max-w-[20rem] object-cover shadow-xl"
           />
         )}
-        {/* remove this when image works*/}
-        {/* <div tw="bg-primary max-w-[15rem] w-full"></div> */}
         <ContentWrapper flip={flip}>
           <Title>{title}</Title>
           <Content content={description} />

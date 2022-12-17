@@ -16,7 +16,7 @@ const TopItem = styled.li(() => [
   tw`hover:(after:w-[calc(100% - 1.25rem)] [.children]:flex)`,
 ])
 const ChildItem = styled.li`
-  ${tw`hover:bg-secondary flex w-full text-base capitalize`}
+  ${tw`hover:bg-secondary whitespace-nowrap flex w-full text-base capitalize`}
 `
 
 interface Props {
