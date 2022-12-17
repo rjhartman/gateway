@@ -37,15 +37,19 @@ export default {
                 .replace(/-+$/, ''),
       },
       codegen: { required: true },
+
       validation: (Rule) => Rule.required(),
+
     },
     {
       name: 'layout',
       title: 'Layout',
       type: 'string',
       initialValue: 'default',
+
       codegen: { required: true },
       validation: (Rule) => Rule.required(),
+
       options: {
         list: [
           { title: 'Default', value: 'default' },
