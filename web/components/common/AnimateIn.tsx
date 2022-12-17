@@ -22,7 +22,7 @@ const Wrapper = styled.div(
     duration: number
     delay: number
     blur: boolean
-    mobileDuration: string
+    mobileDuration: number
     mobileDistance: string
     mobileDirection: string
   }) => [

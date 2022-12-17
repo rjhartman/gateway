@@ -8,7 +8,7 @@ export default createCodegenClient<Documents>({
   // Note: these are useful to pull from environment variables
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? '',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? '',
-  useCdn: process.env.NODE_ENV === 'production',
+  useCdn: false,
   apiVersion: 'v2021-10-21',
 
   // (required) the fetch implementation to use
@@ -25,6 +25,6 @@ export default createCodegenClient<Documents>({
 export const defaultSanityClient = createDefaultClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? '',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? '',
-  useCdn: process.env.NODE_ENV === 'production',
+  useCdn: false,
   apiVersion: 'v2021-10-21',
 })

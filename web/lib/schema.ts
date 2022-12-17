@@ -49,7 +49,7 @@ export interface Page extends SanityDocument {
    *
    *
    */
-  title?: string;
+  title: string;
 
   /**
    * Slug — `slug`
@@ -57,6 +57,13 @@ export interface Page extends SanityDocument {
    *
    */
   slug: { _type: "slug"; current: string };
+
+  /**
+   * Layout — `string`
+   *
+   *
+   */
+  layout: "default" | "home" | "contact" | "sitemap";
 
   /**
    * Parent — `reference`
@@ -76,6 +83,13 @@ export interface Page extends SanityDocument {
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
   };
+
+  /**
+   * Content — `blockContent`
+   *
+   *
+   */
+  content?: BlockContent;
 
   /**
    * Publish Status — `string`
@@ -453,7 +467,16 @@ export type FrontHero = {
   };
 };
 
-export type BlockContent = Array<SanityKeyed<SanityBlock>>;
+export type BlockContent = Array<
+  | SanityKeyed<SanityBlock>
+  | SanityKeyed<{
+      _type: "image";
+      asset: SanityReference<SanityImageAsset>;
+      crop?: SanityImageCrop;
+      hotspot?: SanityImageHotspot;
+    }>
+  | SanityKeyed<Resturant>
+>;
 
 export type Services = {
   _type: "services";
@@ -506,6 +529,56 @@ export type Services = {
       link?: Link;
     }>
   >;
+};
+
+export type Resturant = {
+  _type: "resturant";
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name: string;
+
+  /**
+   * Logo — `image`
+   *
+   *
+   */
+  logo?: {
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
+
+  /**
+   * Phone Number — `string`
+   *
+   *
+   */
+  phoneNumber?: string;
+
+  /**
+   * Hours — `string`
+   *
+   *
+   */
+  hours?: string;
+
+  /**
+   * Address — `string`
+   *
+   *
+   */
+  address?: string;
+
+  /**
+   * Menu Link — `url`
+   *
+   *
+   */
+  menuLink?: string;
 };
 
 export type Documents =

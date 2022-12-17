@@ -8,19 +8,28 @@ import type {
 import Header from '@common/Header'
 import Footer from '@common/Footer'
 
-interface LayoutProps {
-  children: ReactNode
-  logos: LogosType
-  companyInfo: CompanyInfoType
-}
-
-const Layout: FC<LayoutProps> = ({ logos, companyInfo, children }) => {
+const Layout: FC<LayoutProps> = ({
+  logos,
+  companyInfo,
+  children,
+  contact = false,
+  inner = false,
+}) => {
   const { address, email, phoneNumber, mapsEmbed, mapsLink } = companyInfo
   return (
     <>
-      <Header logos={logos} phoneNumber={phoneNumber} />
+      <Header
+        logos={logos}
+        phoneNumber={phoneNumber}
+        inner={inner || contact}
+      />
       <main>{children}</main>
-      <Footer address={address} mapsLink={mapsLink} mapsEmbed={mapsEmbed} />
+      <Footer
+        address={address}
+        mapsLink={mapsLink}
+        mapsEmbed={mapsEmbed}
+        contact={contact}
+      />
     </>
   )
 }

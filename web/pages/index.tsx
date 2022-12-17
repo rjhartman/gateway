@@ -7,7 +7,13 @@ import CompanyHistory from '@frontPage/CompanyHistory'
 import Services from '@frontPage/Services'
 import sanityClient, { defaultSanityClient } from 'lib/sanity-client'
 
-const Home: NextPage<Props> = ({ homePage, logos, companyInfo, services }) => {
+const Home: NextPage<Props> = ({
+  homePage,
+  logos,
+  companyInfo,
+  services,
+  page,
+}) => {
   const { hero, companyHistory } = homePage
 
   return (
@@ -28,6 +34,9 @@ export const getStaticProps = async () => {
   let [homePage] = await sanityClient.getAll('homePage')
   const [logos] = await sanityClient.getAll('logos')
   const [companyInfo] = await sanityClient.getAll('companyInfo')
+  const [page] = await defaultSanityClient.fetch(
+    groq`*[type == page && layout == "home"]`
+  )
   const x = await defaultSanityClient.fetch(groq`
     *[_type == "homePage"] {
       services {
@@ -47,6 +56,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
+      page,
       homePage,
       logos,
       companyInfo,

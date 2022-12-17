@@ -20,23 +20,23 @@ interface LogoProps {
   logo?: any
   hcLogo?: any
   header?: boolean
-  usehc?: boolean
+  $usehc?: boolean
 }
 
 const Logo: FC<LogoProps> = ({
   logo,
   hcLogo,
   header = false,
-  usehc = false,
+  $usehc = false,
   ...rest
 }) => {
   return header ? (
     <HeaderWrapper>
-      <HeaderImage image={logo} $usehc={usehc} {...rest}></HeaderImage>
-      <HeaderImage image={hcLogo} hc $usehc={usehc} {...rest}></HeaderImage>
+      <HeaderImage image={logo} $usehc={$usehc} {...rest}></HeaderImage>
+      <HeaderImage image={hcLogo} hc $usehc={$usehc} {...rest}></HeaderImage>
     </HeaderWrapper>
   ) : (
-    <Image image={usehc ? hcLogo : logo} {...rest}></Image>
+    <Image image={$usehc ? hcLogo : logo} {...rest}></Image>
   )
 }
 

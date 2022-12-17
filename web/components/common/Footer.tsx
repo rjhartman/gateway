@@ -6,7 +6,10 @@ import NLink from 'next/link'
 import Form from '@common/Form'
 import Title from '@common/Title'
 
-const Section = tw.footer`w-full bg-font py-12 flex flex-col px-4 md:px-12`
+const Section = styled.footer(({ contact }: { contact: boolean }) => [
+  tw`bg-font md:px-12 flex flex-col w-full px-4 py-12`,
+  contact && tw`pt-60`,
+])
 const Top = tw.div`flex flex-col lg:(flex-row  gap-12) gap-20 mb-12`
 const Half = tw.div`flex flex-col w-full lg:w-1/2 items-center justify-between text-white`
 const Copyright = tw.small`text-sm text-white flex gap-1`
@@ -18,6 +21,7 @@ const Map = styled.div`
 `
 const Directions = tw.a`text-2xl text-center duration-500 ease-in-out hover:text-primary`
 interface Props {
+  contact?: boolean
   address: string[] | undefined
   mapsLink: string | undefined
   mapsEmbed:
@@ -29,9 +33,15 @@ interface Props {
     | undefined
 }
 
-const Footer: FC<Props> = ({ address, mapsLink, mapsEmbed, ...rest }) => {
+const Footer: FC<Props> = ({
+  address,
+  mapsLink,
+  mapsEmbed,
+  contact = false,
+  ...rest
+}) => {
   return (
-    <Section {...rest}>
+    <Section contact={contact} {...rest}>
       <Top>
         <Half tw="gap-12 lg:gap-6">
           <Title white>Address</Title>
