@@ -1,19 +1,12 @@
-import { GrNavigate } from 'react-icons/gr'
+import { BsSignpost2 } from 'react-icons/bs'
 
 export default {
   name: 'navigationItem',
   title: 'Navigation Item',
   type: 'object',
-  icon: GrNavigate,
-  options: {
-    editModal: 'fullscreen',
-  },
+  icon: BsSignpost2,
+
   fields: [
-    {
-      name: 'text',
-      type: 'string',
-      title: 'Navigation Text',
-    },
     {
       name: 'navigationItemUrl',
       type: 'link',
@@ -23,7 +16,11 @@ export default {
       name: 'children',
       title: 'Children',
       type: 'array',
-      of: [{ type: 'navigationItem' }],
+      of: [
+        {
+          type: 'navigationItem',
+        },
+      ],
     },
   ],
 }
