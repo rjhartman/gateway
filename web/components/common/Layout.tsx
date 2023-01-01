@@ -1,20 +1,35 @@
 import type { FC, ReactNode } from 'react'
 import tw from 'twin.macro'
 
+import type {
+  CompanyInfo as CompanyInfoType,
+  Logos as LogosType,
+} from 'lib/schema'
 import Header from '@common/Header'
 import Footer from '@common/Footer'
 
-interface LayoutProps {
-  children: ReactNode
-  logos: any
-}
-
-const Layout: FC<LayoutProps> = ({ logos, children }) => {
+const Layout: FC<LayoutProps> = ({
+  logos,
+  companyInfo,
+  children,
+  contact = false,
+  inner = false,
+}) => {
+  const { address, email, phoneNumber, mapsEmbed, mapsLink } = companyInfo
   return (
     <>
-      <Header logos={logos} />
+      <Header
+        logos={logos}
+        phoneNumber={phoneNumber}
+        inner={inner || contact}
+      />
       <main>{children}</main>
-      <Footer />
+      <Footer
+        address={address}
+        mapsLink={mapsLink}
+        mapsEmbed={mapsEmbed}
+        contact={contact}
+      />
     </>
   )
 }

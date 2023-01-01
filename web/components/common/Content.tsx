@@ -3,12 +3,21 @@ import { PortableText } from '@portabletext/react'
 import tw from 'twin.macro'
 import styled, { css } from 'styled-components'
 
+import type { Resturant as ResturantType } from 'lib/schema'
+import Resturant from 'components/content/Resturant'
+
 const styles = () => [
+  tw`w-full`,
+
   css`
     p,
     ul,
     ol {
       ${tw`mb-4`}
+    }
+
+    h2 {
+      ${tw`mb-4 text-3xl font-bold`}
     }
 
     ul,
@@ -38,7 +47,11 @@ const Article = styled.article(() => [styles])
 const Div = styled.div(() => [styles])
 
 const components = {
-  types: {},
+  types: {
+    resturant: ({ value }: { value: ResturantType }) => (
+      <Resturant {...value} />
+    ),
+  },
   block: {},
 }
 

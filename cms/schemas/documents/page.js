@@ -17,6 +17,7 @@ export default {
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
+      codegen: { required: true },
     },
     {
       name: 'slug',
@@ -25,10 +26,9 @@ export default {
       options: {
         source: 'title',
         slugify: (input) =>
-          input.toLowerCase() === 'home'
+          parent.layout === 'home'
             ? '/'
-            : '/' +
-              input
+            : input
                 .toLowerCase()
                 .replace(/\s+/g, '-')
                 .replace(/[^\w-]+/g, '')
@@ -36,16 +36,28 @@ export default {
                 .replace(/^-+/, '')
                 .replace(/-+$/, ''),
       },
-      validation: (Rule) => [
-        Rule.required().error('Missing slug'),
-        Rule.custom((slug) => {
-          if (slug.current.startsWith('/')) {
-            return true
-          } else {
-            return "Slug must start with '/'"
-          }
-        }),
-      ],
+      codegen: { required: true },
+
+      validation: (Rule) => Rule.required(),
+
+    },
+    {
+      name: 'layout',
+      title: 'Layout',
+      type: 'string',
+      initialValue: 'default',
+
+      codegen: { required: true },
+      validation: (Rule) => Rule.required(),
+
+      options: {
+        list: [
+          { title: 'Default', value: 'default' },
+          { title: 'Home', value: 'home' },
+          { title: 'Contact', value: 'contact' },
+          { title: 'Sitemap', value: 'sitemap' },
+        ],
+      },
     },
     {
       name: 'parent',
@@ -73,6 +85,11 @@ export default {
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: 'content',
+      title: 'Content',
+      type: 'blockContent',
     },
     {
       name: 'publishStatus',

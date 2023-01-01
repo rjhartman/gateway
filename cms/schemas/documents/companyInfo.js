@@ -12,6 +12,7 @@ export default {
       name: 'name',
       title: 'Name',
       type: 'string',
+      codegen: { required: true },
       validation: (Rule) => Rule.required(),
     },
     {
@@ -39,6 +40,14 @@ export default {
       name: 'mapsLink',
       title: 'Maps Link',
       type: 'url',
+    },
+    {
+      name: 'mapsEmbed',
+      title: 'Maps Embed',
+      type: 'code',
+      options: {
+        language: 'html',
+      },
     },
   ],
 }

@@ -19,7 +19,8 @@
       "@common/*": ["components/common/*"],
       "@frontPage/*": ["components/frontPage/*"],
       "@content/*": ["components/content/*"],
-      "@functions": ["lib/functions"]
+      "@functions": ["lib/functions"],
+      "@templates/*": ["templates/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/**/*", "src/**/*"],
