@@ -27,4 +27,6 @@ export const defaultSanityClient = createDefaultClient({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? '',
   useCdn: false,
   apiVersion: 'v2021-10-21',
+  token: process.env.NEXT_PUBLIC_SANITY_TOKEN,
+  withCredentials: true,
 })

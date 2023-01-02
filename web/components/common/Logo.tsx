@@ -6,12 +6,12 @@ import Image from '@common/SanityImage'
 
 const HeaderWrapper = tw.div`flex flex-row gap-4 relative h-full w-full`
 const HeaderImage = styled(Image)(
-  ({ hc = false, $usehc }: { hc?: boolean; $usehc: boolean }) => [
+  ({ $hc = false, $usehc }: { $hc?: boolean; $usehc: boolean }) => [
     tw`absolute object-contain h-full duration-300 ease-in-out`,
-    hc ? tw`opacity-100` : tw`opacity-0`,
-    $usehc && hc
+    $hc ? tw`opacity-100` : tw`opacity-0`,
+    $usehc && $hc
       ? tw`lg:opacity-100`
-      : !hc && !$usehc
+      : !$hc && !$usehc
       ? tw`lg:opacity-100`
       : tw`lg:opacity-0`,
   ]
@@ -33,7 +33,7 @@ const Logo: FC<LogoProps> = ({
   return header ? (
     <HeaderWrapper>
       <HeaderImage image={logo} $usehc={$usehc} {...rest}></HeaderImage>
-      <HeaderImage image={hcLogo} hc $usehc={$usehc} {...rest}></HeaderImage>
+      <HeaderImage image={hcLogo} $hc $usehc={$usehc} {...rest}></HeaderImage>
     </HeaderWrapper>
   ) : (
     <Image image={$usehc ? hcLogo : logo} {...rest}></Image>

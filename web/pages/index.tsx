@@ -6,18 +6,20 @@ import FrontHero from '@frontPage/FrontHero'
 import CompanyHistory from '@frontPage/CompanyHistory'
 import Services from '@frontPage/Services'
 import sanityClient, { defaultSanityClient } from 'lib/sanity-client'
+import { buildMenu } from '@functions'
 
 const Home: NextPage<Props> = ({
   homePage,
   logos,
   companyInfo,
   services,
+  menu,
   page,
 }) => {
   const { hero, companyHistory } = homePage
 
   return (
-    <Layout logos={logos} companyInfo={companyInfo}>
+    <Layout logos={logos} companyInfo={companyInfo} menu={menu}>
       {hero && <FrontHero {...hero} />}
       {services && <Services {...services} />}
       {companyHistory && <CompanyHistory {...companyHistory} />}
@@ -54,6 +56,20 @@ export const getStaticProps = async () => {
   `)
   const services = x[0].services
 
+  const mainMenu = await defaultSanityClient.fetch(groq`
+    *[type == navigation && name == "Main Menu"][0] {
+      items[] {
+        children[],
+        link {
+          type,
+          text,
+          externalLink,
+          internalLink
+        }
+      }
+    }
+  `)
+
   return {
     props: {
       page,
@@ -61,6 +77,8 @@ export const getStaticProps = async () => {
       logos,
       companyInfo,
       services,
+      mainMenu,
+      menu: await buildMenu(mainMenu),
     },
   }
 }

@@ -82,10 +82,17 @@ const navItems = [
 interface FilterProps {
   logos: LogosType
   inner: boolean
+  menu: []
   phoneNumber: string | undefined
 }
 
-const Header: FC<FilterProps> = ({ inner, logos, phoneNumber, ...rest }) => {
+const Header: FC<FilterProps> = ({
+  inner,
+  logos,
+  phoneNumber,
+  menu,
+  ...rest
+}) => {
   const [smallHeader, setSmallHeader] = useState<boolean>(false)
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
   const { logo, hcLogo } = logos
@@ -115,7 +122,7 @@ const Header: FC<FilterProps> = ({ inner, logos, phoneNumber, ...rest }) => {
         />
       </LogoWrapper>
       <div tw="hidden md:flex flex-col items-end gap-2">
-        <DesktopNav navItems={navItems} />
+        <DesktopNav menu={menu} />
         {!!phoneNumber && (
           <Number href={`tel:${cleanPhoneNumber(phoneNumber)}`}>
             {phoneNumber}
