@@ -22,5 +22,13 @@ export default {
         hotspot: true,
       },
     },
+    {
+      name: 'video',
+      title: 'Video',
+      type: 'file',
+      options: {
+        accept: 'video/mp4',
+      },
+    },
   ],
 }

@@ -465,6 +465,13 @@ export type FrontHero = {
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
   };
+
+  /**
+   * Video — `file`
+   *
+   *
+   */
+  video?: { _type: "file"; asset: SanityReference<any> };
 };
 
 export type BlockContent = Array<
