@@ -17,5 +17,6 @@ declare global {
     children?: ReactNode
     contact?: boolean
     inner?: boolean
+    menu?: []
   }
 }

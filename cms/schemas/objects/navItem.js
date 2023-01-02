@@ -12,7 +12,6 @@ export default {
       children: 'children',
     },
     prepare({ link, children }) {
-      console.log(link)
       const title = link?.text || 'Untitled'
       const subtitle = `Type: ${link?.type} - Children: ${
         children?.length || 0
