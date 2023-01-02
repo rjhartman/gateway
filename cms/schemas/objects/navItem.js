@@ -6,11 +6,30 @@ export default {
   type: 'object',
   icon: BsSignpost2,
 
+  preview: {
+    select: {
+      link: 'link',
+      children: 'children',
+    },
+    prepare({ link, children }) {
+      console.log(link)
+      const title = link?.text || 'Untitled'
+      const subtitle = `Type: ${link?.type} - Children: ${
+        children?.length || 0
+      }`
+      return {
+        title: title,
+        subtitle: subtitle,
+        media: BsSignpost2,
+      }
+    },
+  },
+
   fields: [
     {
-      name: 'navigationItemUrl',
+      name: 'link',
       type: 'link',
-      title: 'Navigation Item URL',
+      title: 'Navigation Item',
     },
     {
       name: 'children',
