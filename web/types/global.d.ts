@@ -9,6 +9,7 @@ declare global {
     logos: LogosType
     companyInfo: CompanyInfoType
     page: PageType
+    menu: []
   }
 
   interface LayoutProps {
@@ -17,5 +18,6 @@ declare global {
     children?: ReactNode
     contact?: boolean
     inner?: boolean
+    menu?: []
   }
 }

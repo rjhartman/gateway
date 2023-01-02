@@ -12,13 +12,15 @@ const Layout: FC<LayoutProps> = ({
   logos,
   companyInfo,
   children,
+  menu = [],
   contact = false,
   inner = false,
 }) => {
-  const { address, email, phoneNumber, mapsEmbed, mapsLink } = companyInfo
+  const { address, phoneNumber, mapsEmbed, mapsLink } = companyInfo
   return (
     <>
       <Header
+        menu={menu}
         logos={logos}
         phoneNumber={phoneNumber}
         inner={inner || contact}

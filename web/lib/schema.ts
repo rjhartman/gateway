@@ -393,18 +393,11 @@ export type Seo = {
 export type NavigationItem = {
   _type: "navigationItem";
   /**
-   * Navigation Text — `string`
+   * Navigation Item — `link`
    *
    *
    */
-  text?: string;
-
-  /**
-   * Navigation Item URL — `link`
-   *
-   *
-   */
-  navigationItemUrl?: Link;
+  link?: Link;
 
   /**
    * Children — `array`
@@ -416,6 +409,13 @@ export type NavigationItem = {
 
 export type Link = {
   _type: "link";
+  /**
+   * Text — `string`
+   *
+   *
+   */
+  text?: string;
+
   /**
    * Internal Link — `reference`
    *
@@ -435,7 +435,7 @@ export type Link = {
    *
    *
    */
-  itemType?: "internal" | "external";
+  type?: "internal" | "external" | "placeholder";
 };
 
 export type FrontHero = {

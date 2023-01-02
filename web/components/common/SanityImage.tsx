@@ -2,7 +2,7 @@ import type { FC, ReactNode } from 'react'
 import tw from 'twin.macro'
 import Img from 'next/image'
 import { useNextSanityImage } from 'next-sanity-image'
-import { configuredSanityClient } from '@functions'
+import { defaultSanityClient } from 'lib/sanity-client'
 import { UseNextSanityImageProps } from 'next-sanity-image/dist/types'
 
 interface SanityImageProps {
@@ -16,7 +16,7 @@ const SanityImage: FC<SanityImageProps> = ({
   ...rest
 }) => {
   const imageProps = useNextSanityImage(
-    configuredSanityClient,
+    defaultSanityClient,
     image
   ) as any as UseNextSanityImageProps
 
