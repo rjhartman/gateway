@@ -9,6 +9,7 @@ declare global {
     logos: LogosType
     companyInfo: CompanyInfoType
     page: PageType
+    menu: []
   }
 
   interface LayoutProps {

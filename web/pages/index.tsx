@@ -70,10 +70,6 @@ export const getStaticProps = async () => {
     }
   `)
 
-  const menu = await buildMenu(mainMenu)
-  console.log('== RESULT ==')
-  console.log(menu)
-
   return {
     props: {
       page,
@@ -82,7 +78,7 @@ export const getStaticProps = async () => {
       companyInfo,
       services,
       mainMenu,
-      menu,
+      menu: await buildMenu(mainMenu),
     },
   }
 }

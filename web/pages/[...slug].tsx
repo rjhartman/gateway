@@ -1,12 +1,14 @@
 import type { GetStaticPaths, NextPage } from 'next'
 import type { FC } from 'react'
+import groq from 'groq'
 
 import sanityClient, { defaultSanityClient } from 'lib/sanity-client'
 import Contact from '@templates/Contact'
 import Inner from '@templates/Inner'
 import Sitemap from '@templates/Sitemap'
+import { buildMenu } from '@functions'
 
-const Page: NextPage<Props> = ({ logos, companyInfo, page }) => {
+const Page: NextPage<Props> = ({ logos, companyInfo, page, menu }) => {
   let Template: FC<PageTemplateProps> = Inner
 
   switch (page.layout) {
@@ -21,7 +23,9 @@ const Page: NextPage<Props> = ({ logos, companyInfo, page }) => {
       break
   }
 
-  return <Template logos={logos} companyInfo={companyInfo} page={page} />
+  return (
+    <Template logos={logos} companyInfo={companyInfo} page={page} menu={menu} />
+  )
 }
 
 export default Page
@@ -58,12 +62,26 @@ export const getStaticProps = async ({ params }: { params: any }) => {
   const page = await defaultSanityClient.fetch(
     `*[type == page && slug.current == "${slug}"][0]`
   )
+  const mainMenu = await defaultSanityClient.fetch(groq`
+  *[type == navigation && name == "Main Menu"][0] {
+    items[] {
+      children[],
+      link {
+        type,
+        text,
+        externalLink,
+        internalLink
+      }
+    }
+  }
+`)
 
   return {
     props: {
       logos,
       companyInfo,
       page,
+      menu: await buildMenu(mainMenu),
     },
   }
 }

@@ -1,9 +1,7 @@
-import { useEffect, useState, FC } from 'react'
+import { FC } from 'react'
 import tw from 'twin.macro'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import Link from 'next/link'
-
-import { buildMenu } from '@functions'
 
 const Nav = tw.nav`relative flex flex-col items-center lg:(absolute w-auto mx-auto left-[50%] -translate-x-[50%])`
 const Top = tw.ul`flex flex-row uppercase font-poppins text-lg -mx-3`
@@ -29,12 +27,10 @@ const DesktopNav: FC<Props> = ({ menu, ...rest }) => {
   const listItems = (nav: any, child = false) => {
     const Item = !!child ? ChildItem : TopItem
     const List = !!child ? Children : Top
-    console.log('nav', nav)
     return (
       <List className={!!child ? 'children' : ''}>
         {nav.map(({ title, type, url, children }: any, i: number) => {
           return (
-            // todo: make this better
             <Item key={i}>
               {type === 'placeholder' ? (
                 <span>{title}</span>

@@ -21,19 +21,19 @@ import type {
  */
 export async function buildMenu(rawMenu: NavigationType) {
   const getItems = async (items: NavItemType[] | undefined): Promise<any> => {
-    const menuItems = await Promise.all(
+    return await Promise.all(
       items?.map(async ({ link, children }) => {
         const url = async () => {
-          if (!['external', 'internal'].includes(link?.type)) return null
+          if (!link || link.type === 'placeholder') return null
 
-          if (link?.type === 'external' && link?.externalUrl)
+          if (link.type === 'external' && link.externalUrl)
             return link.externalUrl
-          if (link?.type === 'internal' && link?.internalLink) {
-            const { slug } = (await sanityClient.expand(
-              link?.internalLink
-            )) as PageType
 
-            return `/${slug?.current}`
+          if (link.type === 'internal' && link.internalLink) {
+            const { slug } = (await sanityClient.expand(
+              link.internalLink
+            )) as PageType
+            return `/${slug.current}`
           }
         }
 
@@ -45,7 +45,6 @@ export async function buildMenu(rawMenu: NavigationType) {
         }
       }) || []
     )
-    return menuItems
   }
 
   return await getItems(rawMenu.items)
