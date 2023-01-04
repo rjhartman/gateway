@@ -5,9 +5,10 @@ import NLink from 'next/link'
 
 import Form from '@common/Form'
 import Title from '@common/Title'
+import type { Form as FormType } from 'lib/schema'
 
 const Section = styled.footer(({ contact }: { contact: boolean }) => [
-  tw`bg-font md:px-12 flex flex-col w-full px-4 py-12`,
+  tw`bg-font md:px-12 flex flex-col w-full px-4 pt-20 pb-12`,
   contact && tw`pt-60`,
 ])
 const Top = tw.div`flex flex-col lg:(flex-row  gap-12) gap-20 mb-12`
@@ -24,6 +25,7 @@ interface Props {
   contact?: boolean
   address: string[] | undefined
   mapsLink: string | undefined
+  form: FormType
   mapsEmbed:
     | {
         _type: string
@@ -37,6 +39,7 @@ const Footer: FC<Props> = ({
   address,
   mapsLink,
   mapsEmbed,
+  form,
   contact = false,
   ...rest
 }) => {
@@ -59,8 +62,8 @@ const Footer: FC<Props> = ({
         </Half>
         <Half>
           <div tw="w-full flex flex-col items-center gap-12 max-w-[30rem]">
-            <Title white>Contact Us</Title>
-            <Form />
+            <Title white>{form.title}</Title>
+            <Form form={form} />
           </div>
         </Half>
       </Top>
