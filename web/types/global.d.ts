@@ -10,6 +10,7 @@ declare global {
     logos: LogosType
     companyInfo: CompanyInfoType
     page: PageType
+    form: FormType
     menu: []
   }
 

@@ -8,7 +8,7 @@ import Inner from '@templates/Inner'
 import Sitemap from '@templates/Sitemap'
 import { buildMenu } from '@functions'
 
-const Page: NextPage<Props> = ({ logos, companyInfo, page, menu }) => {
+const Page: NextPage<Props> = ({ page, ...rest }) => {
   let Template: FC<PageTemplateProps> = Inner
 
   switch (page.layout) {
@@ -23,9 +23,7 @@ const Page: NextPage<Props> = ({ logos, companyInfo, page, menu }) => {
       break
   }
 
-  return (
-    <Template logos={logos} companyInfo={companyInfo} page={page} menu={menu} />
-  )
+  return <Template page={page} {...rest} />
 }
 
 export default Page
@@ -58,6 +56,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps = async ({ params }: { params: any }) => {
   const [logos] = await sanityClient.getAll('logos')
   const [companyInfo] = await sanityClient.getAll('companyInfo')
+  const [form] = await sanityClient.getAll('form', 'name == "Contact"')
   const slug = params.slug[0]
   const page = await defaultSanityClient.fetch(
     `*[type == page && slug.current == "${slug}"][0]`
@@ -81,6 +80,7 @@ export const getStaticProps = async ({ params }: { params: any }) => {
       logos,
       companyInfo,
       page,
+      form,
       menu: await buildMenu(mainMenu),
     },
   }

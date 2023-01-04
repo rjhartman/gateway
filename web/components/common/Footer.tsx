@@ -71,7 +71,7 @@ const Footer: FC<Props> = ({
         &copy; {new Date().getFullYear()} Gateway Travel Plaza - All Rights
         Reserved.
         {/* <Link href="/disclaimer/">Disclaimer</Link> */}
-        <Link href="/sitemap/">Site Map</Link>
+        {/* <Link href="/sitemap/">Site Map</Link> */}
       </Copyright>
     </Section>
   )
