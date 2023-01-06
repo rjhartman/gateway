@@ -14,12 +14,13 @@ const Home: NextPage<Props> = ({
   companyInfo,
   services,
   menu,
+  form,
   page,
 }) => {
   const { hero, companyHistory } = homePage
 
   return (
-    <Layout logos={logos} companyInfo={companyInfo} menu={menu}>
+    <Layout logos={logos} companyInfo={companyInfo} menu={menu} form={form}>
       {hero && <FrontHero {...hero} />}
       {services && <Services {...services} />}
       {companyHistory && <CompanyHistory {...companyHistory} />}
@@ -36,6 +37,8 @@ export const getStaticProps = async () => {
   let [homePage] = await sanityClient.getAll('homePage')
   const [logos] = await sanityClient.getAll('logos')
   const [companyInfo] = await sanityClient.getAll('companyInfo')
+  const [form] = await sanityClient.getAll('form', 'name == "Contact"')
+
   const [page] = await defaultSanityClient.fetch(
     groq`*[type == page && layout == "home"]`
   )
@@ -68,7 +71,7 @@ export const getStaticProps = async () => {
         }
       }
     }
-  `)
+    `)
 
   return {
     props: {
@@ -78,6 +81,7 @@ export const getStaticProps = async () => {
       companyInfo,
       services,
       mainMenu,
+      form,
       menu: await buildMenu(mainMenu),
     },
   }

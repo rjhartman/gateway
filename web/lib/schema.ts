@@ -330,6 +330,50 @@ export interface MetaData extends SanityDocument {
   frontPage?: SanityReference<Page>;
 }
 
+/**
+ * Form
+ *
+ *
+ */
+export interface Form extends SanityDocument {
+  _type: "form";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name: string;
+
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  title: string;
+
+  /**
+   * FormCarry ID — `string`
+   *
+   *
+   */
+  formCarryID: string;
+
+  /**
+   * Fields — `array`
+   *
+   *
+   */
+  fields?: Array<SanityKeyed<FormField>>;
+
+  /**
+   * Submit Button Text — `string`
+   *
+   *
+   */
+  submitText: string;
+}
+
 export type CompanyHistory = {
   _type: "companyHistory";
   /**
@@ -581,13 +625,45 @@ export type Resturant = {
   menuLink?: string;
 };
 
+export type FormField = {
+  _type: "formField";
+  /**
+   * Type — `string`
+   *
+   *
+   */
+  type: "text" | "email" | "tel" | "textarea" | "select";
+
+  /**
+   * Label — `string`
+   *
+   *
+   */
+  label: string;
+
+  /**
+   * Required — `boolean`
+   *
+   *
+   */
+  required: boolean;
+
+  /**
+   * Options — `array`
+   *
+   *
+   */
+  options: Array<SanityKeyed<string>>;
+};
+
 export type Documents =
   | Page
   | Navigation
   | Logos
   | CompanyInfo
   | HomePage
-  | MetaData;
+  | MetaData
+  | Form;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but

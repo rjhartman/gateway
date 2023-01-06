@@ -37,9 +37,7 @@ export default {
                 .replace(/-+$/, ''),
       },
       codegen: { required: true },
-
       validation: (Rule) => Rule.required(),
-
     },
     {
       name: 'layout',
