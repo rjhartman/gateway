@@ -1,4 +1,9 @@
-import { AiOutlineForm, AiOutlineMail, AiOutlinePhone } from 'react-icons/ai'
+import {
+  AiOutlineForm,
+  AiOutlineMail,
+  AiOutlinePhone,
+  AiOutlineEyeInvisible,
+} from 'react-icons/ai'
 import { BsMenuAppFill } from 'react-icons/bs'
 
 export default {
@@ -20,6 +25,8 @@ export default {
             return AiOutlinePhone
           case 'select':
             return BsMenuAppFill
+          case 'hidden':
+            return AiOutlineEyeInvisible
           default:
             return AiOutlineForm
         }
@@ -46,6 +53,7 @@ export default {
           { title: 'Phone', value: 'tel' },
           { title: 'Textarea', value: 'textarea' },
           { title: 'Select', value: 'select' },
+          { title: 'Hidden', value: 'hidden' },
           // { title: 'Checkbox', value: 'checkbox' },
           // { title: 'Radio', value: 'radio' },
         ],
