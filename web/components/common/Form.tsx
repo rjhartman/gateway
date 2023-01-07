@@ -1,5 +1,5 @@
 import type { FC } from 'react'
-import { useState, useRef, useEffect } from 'react'\
+import { useState, useRef, useEffect } from 'react'
 import tw from 'twin.macro'
 import styled from 'styled-components'
 import AnimateHeight from 'react-animate-height'
