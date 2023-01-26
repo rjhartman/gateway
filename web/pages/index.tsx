@@ -1,12 +1,13 @@
 import { NextPage } from 'next'
 import groq from 'groq'
 
+import sanityClient, { defaultSanityClient } from 'lib/sanity-client'
+import { buildMenu } from '@functions'
 import Layout from '@common/Layout'
 import FrontHero from '@frontPage/FrontHero'
 import CompanyHistory from '@frontPage/CompanyHistory'
 import Services from '@frontPage/Services'
-import sanityClient, { defaultSanityClient } from 'lib/sanity-client'
-import { buildMenu } from '@functions'
+import Boxen from '@frontPage/Boxen'
 
 const Home: NextPage<Props> = ({
   homePage,
@@ -15,13 +16,15 @@ const Home: NextPage<Props> = ({
   services,
   menu,
   form,
+  heroVideo,
   page,
 }) => {
   const { hero, companyHistory } = homePage
 
   return (
     <Layout logos={logos} companyInfo={companyInfo} menu={menu} form={form}>
-      {hero && <FrontHero {...hero} />}
+      {hero && <FrontHero {...hero} video={heroVideo} />}
+      <Boxen />
       {services && <Services {...services} />}
       {companyHistory && <CompanyHistory {...companyHistory} />}
     </Layout>
@@ -34,7 +37,10 @@ type UnwrapPromise<T> = T extends Promise<infer U> ? U : T
 type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props']
 
 export const getStaticProps = async () => {
-  let [homePage] = await sanityClient.getAll('homePage')
+  const [homePage] = await sanityClient.getAll('homePage')
+  const heroVideo = !!homePage?.hero?.backgroundVideo?.asset
+    ? await sanityClient.expand(homePage?.hero?.backgroundVideo?.asset)
+    : null
   const [logos] = await sanityClient.getAll('logos')
   const [companyInfo] = await sanityClient.getAll('companyInfo')
   const [form] = await sanityClient.getAll('form', 'name == "Contact"')
@@ -82,6 +88,7 @@ export const getStaticProps = async () => {
       services,
       mainMenu,
       form,
+      heroVideo,
       menu: await buildMenu(mainMenu),
     },
   }
