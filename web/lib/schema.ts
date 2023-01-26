@@ -511,6 +511,7 @@ export type FrontHero = {
   };
 
   /**
+
    * Background Video — `file`
    *
    * mp4 format
@@ -523,6 +524,7 @@ export type FrontHero = {
    *
    */
   backgroundType?: "image" | "video";
+
 };
 
 export type BlockContent = Array<

@@ -24,15 +24,17 @@ export default {
       },
     },
     {
+
       name: 'backgroundVideo',
       title: 'Background Video',
       description: 'mp4 format',
       type: 'file',
       hidden: ({ parent }) => parent.backgroundType === 'image',
+
       options: {
         accept: 'video/mp4',
       },
-    },
+
     {
       name: 'backgroundType',
       title: 'Background Type',
@@ -47,5 +49,6 @@ export default {
         direction: 'horizontal',
       },
     },
+
   ],
 }
