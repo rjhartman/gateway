@@ -228,20 +228,6 @@ export interface CompanyInfo extends SanityDocument {
   phoneNumber?: string;
 
   /**
-   * Email — `string`
-   *
-   *
-   */
-  email?: string;
-
-  /**
-   * Hours — `array`
-   *
-   *
-   */
-  hours?: Array<SanityKeyed<string>>;
-
-  /**
    * Address — `array`
    *
    *
@@ -261,6 +247,20 @@ export interface CompanyInfo extends SanityDocument {
    *
    */
   mapsEmbed?: Code;
+
+  /**
+   * Employee Portal — `url`
+   *
+   *
+   */
+  employeePortal?: string;
+
+  /**
+   * Job Openings — `url`
+   *
+   *
+   */
+  jobOpenings?: string;
 }
 
 /**
@@ -509,6 +509,20 @@ export type FrontHero = {
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
   };
+
+  /**
+   * Background Video — `file`
+   *
+   * mp4 format
+   */
+  backgroundVideo?: { _type: "file"; asset: SanityReference<any> };
+
+  /**
+   * Background Type — `string`
+   *
+   *
+   */
+  backgroundType?: "image" | "video";
 };
 
 export type BlockContent = Array<
@@ -633,7 +647,6 @@ export type FormField = {
    *
    */
   type: "text" | "email" | "tel" | "textarea" | "select" | "hidden";
-
 
   /**
    * Label — `string`

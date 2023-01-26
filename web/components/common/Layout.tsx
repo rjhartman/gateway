@@ -12,7 +12,14 @@ const Layout: FC<LayoutProps> = ({
   contact = false,
   inner = false,
 }) => {
-  const { address, phoneNumber, mapsEmbed, mapsLink } = companyInfo
+  const {
+    address,
+    phoneNumber,
+    mapsEmbed,
+    mapsLink,
+    employeePortal,
+    jobOpenings,
+  } = companyInfo
   return (
     <>
       <Header
@@ -28,6 +35,8 @@ const Layout: FC<LayoutProps> = ({
         mapsEmbed={mapsEmbed}
         contact={contact}
         form={form}
+        employeePortal={employeePortal}
+        jobOpenings={jobOpenings}
       />
     </>
   )

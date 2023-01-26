@@ -8,12 +8,12 @@ import Title from '@common/Title'
 import type { Form as FormType } from 'lib/schema'
 
 const Section = styled.footer(({ contact }: { contact: boolean }) => [
-  tw`bg-font md:px-12 flex flex-col w-full px-4 pt-20 pb-12`,
+  tw`bg-font md:px-12 flex flex-col w-full px-4 pt-32 pb-12`,
   contact && tw`pt-60`,
 ])
-const Top = tw.div`flex flex-col lg:(flex-row  gap-12) gap-20 mb-12`
+const Top = tw.div`flex flex-col lg:(flex-row  gap-12) gap-20 mb-24`
 const Half = tw.div`flex flex-col w-full lg:w-1/2 items-center justify-between text-white`
-const Copyright = tw.small`text-sm text-white flex gap-1`
+const Copyright = tw.small`text-sm text-white flex gap-1 flex-col `
 const Link = tw(NLink)`duration-500 ease-in-out hover:text-primary`
 
 const Address = tw.address`not-italic text-center text-2xl gap-1 flex flex-col`
@@ -24,6 +24,8 @@ const Directions = tw.a`text-2xl text-center duration-500 ease-in-out hover:text
 interface Props {
   contact?: boolean
   address: string[] | undefined
+  employeePortal: string | undefined
+  jobOpenings: string | undefined
   mapsLink: string | undefined
   form: FormType
   mapsEmbed:
@@ -39,6 +41,8 @@ const Footer: FC<Props> = ({
   address,
   mapsLink,
   mapsEmbed,
+  employeePortal,
+  jobOpenings,
   form,
   contact = false,
   ...rest
@@ -68,10 +72,23 @@ const Footer: FC<Props> = ({
         </Half>
       </Top>
       <Copyright>
+        <span tw="flex gap-2">
+          <Link
+            target={!!employeePortal ? '_blank' : ''}
+            href={employeePortal || '#'}
+          >
+            Employees
+          </Link>
+          <span>|</span>
+          <Link
+            target={!!jobOpenings ? '_blank' : ''}
+            href={jobOpenings || '#'}
+          >
+            Job Opportunities
+          </Link>
+        </span>
         &copy; {new Date().getFullYear()} Gateway Travel Plaza - All Rights
         Reserved.
-        {/* <Link href="/disclaimer/">Disclaimer</Link> */}
-        {/* <Link href="/sitemap/">Site Map</Link> */}
       </Copyright>
     </Section>
   )
