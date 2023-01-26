@@ -44,10 +44,7 @@ export default {
     {
       name: 'mapsEmbed',
       title: 'Maps Embed',
-      type: 'code',
-      options: {
-        language: 'html',
-      },
+      type: 'text',
     },
   ],
 }

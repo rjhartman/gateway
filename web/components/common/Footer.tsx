@@ -57,7 +57,7 @@ const Footer: FC<Props> = ({
             <Directions href={mapsLink}>Map + Directions</Directions>
           )}
           {!!mapsEmbed && (
-            <Map dangerouslySetInnerHTML={{ __html: mapsEmbed.code }} />
+            <Map dangerouslySetInnerHTML={{ __html: String(mapsEmbed) }} />
           )}
         </Half>
         <Half>
