@@ -228,20 +228,6 @@ export interface CompanyInfo extends SanityDocument {
   phoneNumber?: string;
 
   /**
-   * Email — `string`
-   *
-   *
-   */
-  email?: string;
-
-  /**
-   * Hours — `array`
-   *
-   *
-   */
-  hours?: Array<SanityKeyed<string>>;
-
-  /**
    * Address — `array`
    *
    *
@@ -261,6 +247,20 @@ export interface CompanyInfo extends SanityDocument {
    *
    */
   mapsEmbed?: Code;
+
+  /**
+   * Employee Portal — `url`
+   *
+   *
+   */
+  employeePortal?: string;
+
+  /**
+   * Job Openings — `url`
+   *
+   *
+   */
+  jobOpenings?: string;
 }
 
 /**
@@ -328,6 +328,50 @@ export interface MetaData extends SanityDocument {
    *
    */
   frontPage?: SanityReference<Page>;
+}
+
+/**
+ * Form
+ *
+ *
+ */
+export interface Form extends SanityDocument {
+  _type: "form";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name: string;
+
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  title: string;
+
+  /**
+   * FormCarry ID — `string`
+   *
+   *
+   */
+  formCarryID: string;
+
+  /**
+   * Fields — `array`
+   *
+   *
+   */
+  fields?: Array<SanityKeyed<FormField>>;
+
+  /**
+   * Submit Button Text — `string`
+   *
+   *
+   */
+  submitText: string;
 }
 
 export type CompanyHistory = {
@@ -467,11 +511,20 @@ export type FrontHero = {
   };
 
   /**
-   * Video — `file`
+
+   * Background Video — `file`
+   *
+   * mp4 format
+   */
+  backgroundVideo?: { _type: "file"; asset: SanityReference<any> };
+
+  /**
+   * Background Type — `string`
    *
    *
    */
-  video?: { _type: "file"; asset: SanityReference<any> };
+  backgroundType?: "image" | "video";
+
 };
 
 export type BlockContent = Array<
@@ -588,13 +641,45 @@ export type Resturant = {
   menuLink?: string;
 };
 
+export type FormField = {
+  _type: "formField";
+  /**
+   * Type — `string`
+   *
+   *
+   */
+  type: "text" | "email" | "tel" | "textarea" | "select" | "hidden";
+
+  /**
+   * Label — `string`
+   *
+   *
+   */
+  label: string;
+
+  /**
+   * Required — `boolean`
+   *
+   *
+   */
+  required: boolean;
+
+  /**
+   * Options — `array`
+   *
+   *
+   */
+  options: Array<SanityKeyed<string>>;
+};
+
 export type Documents =
   | Page
   | Navigation
   | Logos
   | CompanyInfo
   | HomePage
-  | MetaData;
+  | MetaData
+  | Form;
 
 /**
  * This interface is a stub. It was referenced in your sanity schema but

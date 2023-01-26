@@ -1,10 +1,5 @@
-import type { FC, ReactNode } from 'react'
-import tw from 'twin.macro'
+import type { FC } from 'react'
 
-import type {
-  CompanyInfo as CompanyInfoType,
-  Logos as LogosType,
-} from 'lib/schema'
 import Header from '@common/Header'
 import Footer from '@common/Footer'
 
@@ -12,11 +7,19 @@ const Layout: FC<LayoutProps> = ({
   logos,
   companyInfo,
   children,
+  form,
   menu = [],
   contact = false,
   inner = false,
 }) => {
-  const { address, phoneNumber, mapsEmbed, mapsLink } = companyInfo
+  const {
+    address,
+    phoneNumber,
+    mapsEmbed,
+    mapsLink,
+    employeePortal,
+    jobOpenings,
+  } = companyInfo
   return (
     <>
       <Header
@@ -31,6 +34,9 @@ const Layout: FC<LayoutProps> = ({
         mapsLink={mapsLink}
         mapsEmbed={mapsEmbed}
         contact={contact}
+        form={form}
+        employeePortal={employeePortal}
+        jobOpenings={jobOpenings}
       />
     </>
   )

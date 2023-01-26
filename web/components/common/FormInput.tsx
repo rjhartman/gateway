@@ -33,9 +33,15 @@ const FormInput: FC<Props> = ({
   const Input = type === 'textarea' ? TextArea : TextInput
   return (
     <Wrapper>
-      <label htmlFor={name}>{label}</label>
+      {type !== 'hidden' && <label htmlFor={name}>{label}</label>}
       {/* @ts-ignore */}
-      <Input ref={inputRef} type={type} valid={!errorMessage} {...rest} />
+      <Input
+        ref={inputRef}
+        name={name}
+        type={type}
+        valid={!errorMessage}
+        {...rest}
+      />
       <AnimateHeight height={!!errorMessage ? 'auto' : 0}>
         <Error>{errorMessage}</Error>
       </AnimateHeight>

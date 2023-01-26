@@ -5,15 +5,10 @@ import Content from '@common/Content'
 import PageWrapper from '@common/PageWrapper'
 import Title from '@common/Title'
 
-const inner: FC<PageTemplateProps> = ({
-  logos,
-  companyInfo,
-  page,
-  ...rest
-}) => {
+const inner: FC<PageTemplateProps> = ({ page, ...rest }) => {
   const { title, content } = page
   return (
-    <Layout logos={logos} companyInfo={companyInfo} inner {...rest}>
+    <Layout inner {...rest}>
       <PageWrapper>
         {!!title && (
           <Title level="h1" inner>

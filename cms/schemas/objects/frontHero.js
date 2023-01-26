@@ -18,17 +18,37 @@ export default {
       name: 'background',
       title: 'Background',
       type: 'image',
+      hidden: ({ parent }) => parent.backgroundType === 'video',
       options: {
         hotspot: true,
       },
     },
     {
-      name: 'video',
-      title: 'Video',
+
+      name: 'backgroundVideo',
+      title: 'Background Video',
+      description: 'mp4 format',
       type: 'file',
+      hidden: ({ parent }) => parent.backgroundType === 'image',
+
       options: {
         accept: 'video/mp4',
       },
+
+    {
+      name: 'backgroundType',
+      title: 'Background Type',
+      type: 'string',
+      initialValue: 'image',
+      options: {
+        list: [
+          { title: 'Image', value: 'image' },
+          { title: 'Video', value: 'video' },
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
     },
+
   ],
 }
