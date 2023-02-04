@@ -12,7 +12,7 @@ const Video = styled.video(({}) => [
 ])
 
 const Button = styled(Link)`
-  ${tw`bg-grey hover:bg-primary  py-3 px-4 text-2xl duration-500 ease-in-out sm:(w-fit px-16) w-full [:last-of-type]:()`}
+  ${tw`bg-offBlack hover:bg-primary  py-3 px-4 text-2xl duration-500 ease-in-out sm:(w-fit px-16) w-full [:last-of-type]:()`}
 `
 
 interface FrontHeroProps extends FrontHeroType {

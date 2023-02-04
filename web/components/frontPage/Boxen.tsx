@@ -9,7 +9,7 @@ const Section = tw.section`flex relative flex-col md:flex-row w-full items-stret
 const Box = styled(AnimateIn)`
   ${tw`flex-col z-10 text-center items-center w-12 justify-center duration-300 w-fit ease-in-out flex text-xl font-bold`}
 `
-const Title = tw.h3`text-2xl font-bold after:([content:''] block w-2/3 mx-auto h-1 bg-primary mt-2)`
+const Title = tw.h3`text-3xl font-bold after:([content:''] block w-2/3 mx-auto h-1 bg-primary mt-2)`
 const Description = tw.p`text-lg mt-2`
 
 interface Props {}
