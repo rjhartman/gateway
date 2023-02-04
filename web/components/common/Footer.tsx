@@ -28,13 +28,7 @@ interface Props {
   jobOpenings: string | undefined
   mapsLink: string | undefined
   form: FormType
-  mapsEmbed:
-    | {
-        _type: string
-        code: string
-        language: string
-      }
-    | undefined
+  mapsEmbed: string | undefined
 }
 
 const Footer: FC<Props> = ({
@@ -61,7 +55,7 @@ const Footer: FC<Props> = ({
             <Directions href={mapsLink}>Map + Directions</Directions>
           )}
           {!!mapsEmbed && (
-            <Map dangerouslySetInnerHTML={{ __html: mapsEmbed.code }} />
+            <Map dangerouslySetInnerHTML={{ __html: String(mapsEmbed) }} />
           )}
         </Half>
         <Half>

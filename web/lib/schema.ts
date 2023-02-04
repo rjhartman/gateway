@@ -242,11 +242,11 @@ export interface CompanyInfo extends SanityDocument {
   mapsLink?: string;
 
   /**
-   * Maps Embed — `code`
+   * Maps Embed — `text`
    *
    *
    */
-  mapsEmbed?: Code;
+  mapsEmbed?: string;
 
   /**
    * Employee Portal — `url`
@@ -511,7 +511,6 @@ export type FrontHero = {
   };
 
   /**
-
    * Background Video — `file`
    *
    * mp4 format
@@ -525,6 +524,12 @@ export type FrontHero = {
    */
   backgroundType?: "image" | "video";
 
+  /**
+   * Buttons — `array`
+   *
+   *
+   */
+  buttons?: Array<SanityKeyed<Link>>;
 };
 
 export type BlockContent = Array<
@@ -680,10 +685,3 @@ export type Documents =
   | HomePage
   | MetaData
   | Form;
-
-/**
- * This interface is a stub. It was referenced in your sanity schema but
- * the definition was not actually found. Future versions of
- * sanity-codegen will let you type this explicity.
- */
-type Code = any;

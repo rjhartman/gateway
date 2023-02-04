@@ -24,7 +24,6 @@ export default {
       },
     },
     {
-
       name: 'backgroundVideo',
       title: 'Background Video',
       description: 'mp4 format',
@@ -34,7 +33,7 @@ export default {
       options: {
         accept: 'video/mp4',
       },
-
+    },
     {
       name: 'backgroundType',
       title: 'Background Type',
@@ -49,6 +48,11 @@ export default {
         direction: 'horizontal',
       },
     },
-
+    {
+      name: 'buttons',
+      title: 'Buttons',
+      type: 'array',
+      of: [{ type: 'link' }],
+    },
   ],
 }
