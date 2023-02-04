@@ -28,7 +28,6 @@ const FrontHero: FC<FrontHeroProps> = ({
   buttons,
   ...rest
 }) => {
-  console.log(buttons)
   return (
     <Section {...rest}>
       {type === 'image' ? (
