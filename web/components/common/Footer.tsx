@@ -28,13 +28,7 @@ interface Props {
   jobOpenings: string | undefined
   mapsLink: string | undefined
   form: FormType
-  mapsEmbed:
-    | {
-        _type: string
-        code: string
-        language: string
-      }
-    | undefined
+  mapsEmbed: string | undefined
 }
 
 const Footer: FC<Props> = ({

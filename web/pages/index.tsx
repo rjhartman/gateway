@@ -37,10 +37,25 @@ type UnwrapPromise<T> = T extends Promise<infer U> ? U : T
 type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props']
 
 export const getStaticProps = async () => {
-  const [homePage] = await sanityClient.getAll('homePage')
+  let [homePage] = await sanityClient.getAll('homePage')
+
+  if (!!homePage?.hero?.buttons) {
+    homePage.hero.buttons = (await Promise.all(
+      homePage.hero.buttons.map(async (button) => {
+        return {
+          ...button,
+          internalLink: button.internalLink
+            ? await sanityClient.expand(button.internalLink)
+            : null,
+        }
+      })
+    )) as any
+  }
+
   const heroVideo = !!homePage?.hero?.backgroundVideo?.asset
     ? await sanityClient.expand(homePage?.hero?.backgroundVideo?.asset)
     : null
+
   const [logos] = await sanityClient.getAll('logos')
   const [companyInfo] = await sanityClient.getAll('companyInfo')
   const [form] = await sanityClient.getAll('form', 'name == "Contact"')
