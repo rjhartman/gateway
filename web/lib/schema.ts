@@ -15,7 +15,7 @@ import type {
   SanityImageDimensions,
   SanityImagePalette,
   SanityImagePaletteSwatch,
-} from 'sanity-codegen'
+} from "sanity-codegen";
 
 export type {
   SanityReference,
@@ -34,7 +34,7 @@ export type {
   SanityImageDimensions,
   SanityImagePalette,
   SanityImagePaletteSwatch,
-}
+};
 
 /**
  * Page
@@ -42,35 +42,35 @@ export type {
  *
  */
 export interface Page extends SanityDocument {
-  _type: 'page'
+  _type: "page";
 
   /**
    * Title — `string`
    *
    *
    */
-  title: string
+  title: string;
 
   /**
    * Slug — `slug`
    *
    *
    */
-  slug: { _type: 'slug'; current: string }
+  slug: { _type: "slug"; current: string };
 
   /**
    * Layout — `string`
    *
    *
    */
-  layout: 'default' | 'home' | 'contact' | 'sitemap'
+  layout: "default" | "home" | "contact" | "sitemap";
 
   /**
    * Parent — `reference`
    *
    *
    */
-  parent?: SanityReference<Page>
+  parent?: SanityReference<Page>;
 
   /**
    * Featured Image — `image`
@@ -78,32 +78,32 @@ export interface Page extends SanityDocument {
    *
    */
   featuredImage?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * Content — `blockContent`
    *
    *
    */
-  content?: BlockContent
+  content?: BlockContent;
 
   /**
    * Publish Status — `string`
    *
    *
    */
-  publishStatus?: 'public' | 'hidden' | 'private'
+  publishStatus?: "public" | "hidden" | "private";
 
   /**
    * SEO — `seo`
    *
    *
    */
-  seo?: Seo
+  seo?: Seo;
 }
 
 /**
@@ -112,21 +112,21 @@ export interface Page extends SanityDocument {
  *
  */
 export interface Navigation extends SanityDocument {
-  _type: 'navigation'
+  _type: "navigation";
 
   /**
    * Name — `string`
    *
    *
    */
-  name: string
+  name: string;
 
   /**
    * Navigation Items — `array`
    *
    *
    */
-  items?: Array<SanityKeyed<NavigationItem>>
+  items?: Array<SanityKeyed<NavigationItem>>;
 }
 
 /**
@@ -135,14 +135,14 @@ export interface Navigation extends SanityDocument {
  *
  */
 export interface Logos extends SanityDocument {
-  _type: 'logos'
+  _type: "logos";
 
   /**
    * Name — `string`
    *
    *
    */
-  name?: string
+  name?: string;
 
   /**
    * Logo — `image`
@@ -150,11 +150,11 @@ export interface Logos extends SanityDocument {
    *
    */
   logo: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * HC Logo — `image`
@@ -162,11 +162,11 @@ export interface Logos extends SanityDocument {
    * Used on light backgrounds.
    */
   hcLogo?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * Logo Icon — `image`
@@ -174,11 +174,11 @@ export interface Logos extends SanityDocument {
    * Used on small screens.
    */
   logoIcon?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * HC Logo Icon — `image`
@@ -186,11 +186,11 @@ export interface Logos extends SanityDocument {
    * Used on small screens and light backgrounds.
    */
   hcLogoIcon?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * Favicon — `image`
@@ -198,11 +198,11 @@ export interface Logos extends SanityDocument {
    *
    */
   favicon?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 }
 
 /**
@@ -211,56 +211,56 @@ export interface Logos extends SanityDocument {
  *
  */
 export interface CompanyInfo extends SanityDocument {
-  _type: 'companyInfo'
+  _type: "companyInfo";
 
   /**
    * Name — `string`
    *
    *
    */
-  name: string
+  name: string;
 
   /**
    * Phone Number — `string`
    *
    *
    */
-  phoneNumber?: string
+  phoneNumber?: string;
 
   /**
    * Address — `array`
    *
    *
    */
-  address?: Array<SanityKeyed<string>>
+  address?: Array<SanityKeyed<string>>;
 
   /**
    * Maps Link — `url`
    *
    *
    */
-  mapsLink?: string
+  mapsLink?: string;
 
   /**
    * Maps Embed — `text`
    *
    *
    */
-  mapsEmbed?: string
+  mapsEmbed?: string;
 
   /**
    * Employee Portal — `url`
    *
    *
    */
-  employeePortal?: string
+  employeePortal?: string;
 
   /**
    * Job Openings — `url`
    *
    *
    */
-  jobOpenings?: string
+  jobOpenings?: string;
 }
 
 /**
@@ -269,35 +269,42 @@ export interface CompanyInfo extends SanityDocument {
  *
  */
 export interface HomePage extends SanityDocument {
-  _type: 'homePage'
+  _type: "homePage";
 
   /**
    * Title — `string`
    *
    *
    */
-  title?: string
+  title?: string;
 
   /**
    * Hero — `frontHero`
    *
    *
    */
-  hero?: FrontHero
+  hero?: FrontHero;
 
   /**
-   * Company History — `companyHistory`
+   * Aops — `aops`
    *
    *
    */
-  companyHistory?: CompanyHistory
+  aops?: Aops;
 
   /**
    * Services — `services`
    *
    *
    */
-  services?: Services
+  services?: Services;
+
+  /**
+   * Company History — `companyHistory`
+   *
+   *
+   */
+  companyHistory?: CompanyHistory;
 }
 
 /**
@@ -306,28 +313,28 @@ export interface HomePage extends SanityDocument {
  *
  */
 export interface MetaData extends SanityDocument {
-  _type: 'metaData'
+  _type: "metaData";
 
   /**
    * Site Title — `string`
    *
    *
    */
-  title?: string
+  title?: string;
 
   /**
    * URL — `url`
    *
    *
    */
-  url?: string
+  url?: string;
 
   /**
    * Front Page — `reference`
    *
    *
    */
-  frontPage?: SanityReference<Page>
+  frontPage?: SanityReference<Page>;
 }
 
 /**
@@ -336,59 +343,59 @@ export interface MetaData extends SanityDocument {
  *
  */
 export interface Form extends SanityDocument {
-  _type: 'form'
+  _type: "form";
 
   /**
    * Name — `string`
    *
    *
    */
-  name: string
+  name: string;
 
   /**
    * Title — `string`
    *
    *
    */
-  title: string
+  title: string;
 
   /**
    * FormCarry ID — `string`
    *
    *
    */
-  formCarryID: string
+  formCarryID: string;
 
   /**
    * Fields — `array`
    *
    *
    */
-  fields?: Array<SanityKeyed<FormField>>
+  fields?: Array<SanityKeyed<FormField>>;
 
   /**
    * Submit Button Text — `string`
    *
    *
    */
-  submitText: string
+  submitText: string;
 }
 
 export type CompanyHistory = {
-  _type: 'companyHistory'
+  _type: "companyHistory";
   /**
    * Title — `string`
    *
    *
    */
-  title: string
+  title: string;
 
   /**
    * History — `blockContent`
    *
    *
    */
-  history?: BlockContent
+  history?: BlockContent;
 
   /**
    * Image — `image`
@@ -396,107 +403,107 @@ export type CompanyHistory = {
    *
    */
   image?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
-}
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
+};
 
 export type Seo = {
-  _type: 'seo'
+  _type: "seo";
   /**
    * SEO Title — `string`
    *
    *
    */
-  seoTitle?: string
+  seoTitle?: string;
 
   /**
    * Meta Description — `text`
    *
    *
    */
-  metaDescription?: string
+  metaDescription?: string;
 
   /**
    * Key Phrase — `string`
    *
    *
    */
-  keyPhrase?: string
+  keyPhrase?: string;
 
   /**
    * Secondary Key Phrase — `string`
    *
    *
    */
-  secondaryKeyPhrase?: string
-}
+  secondaryKeyPhrase?: string;
+};
 
 export type NavigationItem = {
-  _type: 'navigationItem'
+  _type: "navigationItem";
   /**
    * Navigation Item — `link`
    *
    *
    */
-  link?: Link
+  link?: Link;
 
   /**
    * Children — `array`
    *
    *
    */
-  children?: Array<SanityKeyed<NavigationItem>>
-}
+  children?: Array<SanityKeyed<NavigationItem>>;
+};
 
 export type Link = {
-  _type: 'link'
+  _type: "link";
   /**
    * Text — `string`
    *
    *
    */
-  text?: string
+  text?: string;
 
   /**
    * Internal Link — `reference`
    *
    * Select pages for navigation
    */
-  internalLink?: SanityReference<Page>
+  internalLink?: SanityReference<Page>;
 
   /**
    * External URL — `url`
    *
    * Use fully qualified URLS for external link
    */
-  externalUrl?: string
+  externalUrl?: string;
 
   /**
    * Item Type — `string`
    *
    *
    */
-  type?: 'internal' | 'external' | 'placeholder'
-}
+  type?: "internal" | "external" | "placeholder";
+};
 
 export type FrontHero = {
-  _type: 'frontHero'
+  _type: "frontHero";
   /**
    * Title — `string`
    *
    *
    */
-  title?: string
+  title?: string;
 
   /**
    * Subtitle — `string`
    *
    *
    */
-  subtitle?: string
+  subtitle?: string;
 
   /**
    * Background — `image`
@@ -504,53 +511,53 @@ export type FrontHero = {
    *
    */
   background?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * Background Video — `file`
    *
    * mp4 format
    */
-  backgroundVideo?: { _type: 'file'; asset: SanityReference<any> }
+  backgroundVideo?: { _type: "file"; asset: SanityReference<any> };
 
   /**
    * Background Type — `string`
    *
    *
    */
-  backgroundType?: 'image' | 'video'
+  backgroundType?: "image" | "video";
 
   /**
    * Buttons — `array`
    *
    *
    */
-  buttons?: Array<SanityKeyed<Link>>
-}
+  buttons?: Array<SanityKeyed<Link>>;
+};
 
 export type BlockContent = Array<
   | SanityKeyed<SanityBlock>
   | SanityKeyed<{
-      _type: 'image'
-      asset: SanityReference<SanityImageAsset>
-      crop?: SanityImageCrop
-      hotspot?: SanityImageHotspot
+      _type: "image";
+      asset: SanityReference<SanityImageAsset>;
+      crop?: SanityImageCrop;
+      hotspot?: SanityImageHotspot;
     }>
   | SanityKeyed<Resturant>
->
+>;
 
 export type Services = {
-  _type: 'services'
+  _type: "services";
   /**
    * Title — `string`
    *
    *
    */
-  title: string
+  title: string;
 
   /**
    * Services — `array`
@@ -559,20 +566,20 @@ export type Services = {
    */
   services?: Array<
     SanityKeyed<{
-      _type: 'service'
+      _type: "service";
       /**
        * Title — `string`
        *
        *
        */
-      title: string
+      title: string;
 
       /**
        * Description — `blockContent`
        *
        *
        */
-      description?: BlockContent
+      description?: BlockContent;
 
       /**
        * Image — `image`
@@ -580,30 +587,30 @@ export type Services = {
        *
        */
       image?: {
-        _type: 'image'
-        asset: SanityReference<SanityImageAsset>
-        crop?: SanityImageCrop
-        hotspot?: SanityImageHotspot
-      }
+        _type: "image";
+        asset: SanityReference<SanityImageAsset>;
+        crop?: SanityImageCrop;
+        hotspot?: SanityImageHotspot;
+      };
 
       /**
        * Link — `link`
        *
        *
        */
-      link?: Link
+      link?: Link;
     }>
-  >
-}
+  >;
+};
 
 export type Resturant = {
-  _type: 'resturant'
+  _type: "resturant";
   /**
    * Name — `string`
    *
    *
    */
-  name: string
+  name: string;
 
   /**
    * Logo — `image`
@@ -611,71 +618,109 @@ export type Resturant = {
    *
    */
   logo?: {
-    _type: 'image'
-    asset: SanityReference<SanityImageAsset>
-    crop?: SanityImageCrop
-    hotspot?: SanityImageHotspot
-  }
+    _type: "image";
+    asset: SanityReference<SanityImageAsset>;
+    crop?: SanityImageCrop;
+    hotspot?: SanityImageHotspot;
+  };
 
   /**
    * Phone Number — `string`
    *
    *
    */
-  phoneNumber?: string
+  phoneNumber?: string;
 
   /**
    * Hours — `string`
    *
    *
    */
-  hours?: string
+  hours?: string;
 
   /**
    * Address — `string`
    *
    *
    */
-  address?: string
+  address?: string;
 
   /**
    * Menu Link — `url`
    *
    *
    */
-  menuLink?: string
-}
+  menuLink?: string;
+};
 
 export type FormField = {
-  _type: 'formField'
+  _type: "formField";
   /**
    * Type — `string`
    *
    *
    */
-  type: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'hidden'
+  type: "text" | "email" | "tel" | "textarea" | "select" | "hidden";
 
   /**
    * Label — `string`
    *
    *
    */
-  label: string
+  label: string;
 
   /**
    * Required — `boolean`
    *
    *
    */
-  required: boolean
+  required: boolean;
 
   /**
    * Options — `array`
    *
    *
    */
-  options: Array<SanityKeyed<string>>
-}
+  options: Array<SanityKeyed<string>>;
+};
+
+export type Aops = {
+  _type: "aops";
+  /**
+   * Aops — `array`
+   *
+   *
+   */
+  aops?: Array<
+    SanityKeyed<{
+      /**
+       * Title — `string`
+       *
+       *
+       */
+      title?: string;
+
+      /**
+       * Description — `text`
+       *
+       *
+       */
+      description?: string;
+
+      /**
+       * Image — `image`
+       *
+       *
+       */
+      image?: {
+        _type: "image";
+        asset: SanityReference<SanityImageAsset>;
+        crop?: SanityImageCrop;
+        hotspot?: SanityImageHotspot;
+      };
+    }>
+  >;
+};
 
 export type Documents =
   | Page
@@ -684,4 +729,4 @@ export type Documents =
   | CompanyInfo
   | HomePage
   | MetaData
-  | Form
+  | Form;

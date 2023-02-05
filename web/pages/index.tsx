@@ -13,18 +13,16 @@ const Home: NextPage<Props> = ({
   homePage,
   logos,
   companyInfo,
-  services,
   menu,
   form,
   heroVideo,
-  page,
 }) => {
-  const { hero, companyHistory } = homePage
+  const { hero, companyHistory, services, aops } = homePage
 
   return (
     <Layout logos={logos} companyInfo={companyInfo} menu={menu} form={form}>
       {hero && <FrontHero {...hero} video={heroVideo} />}
-      <Boxen />
+      <Boxen {...aops}/>
       {services && <Services {...services} />}
       {companyHistory && <CompanyHistory {...companyHistory} />}
     </Layout>
@@ -37,7 +35,7 @@ type UnwrapPromise<T> = T extends Promise<infer U> ? U : T
 type Props = UnwrapPromise<ReturnType<typeof getStaticProps>>['props']
 
 export const getStaticProps = async () => {
-  let [homePage] = await sanityClient.getAll('homePage')
+  let [homePage] = await sanityClient.getAll('homePage') 
 
   if (!!homePage?.hero?.buttons) {
     homePage.hero.buttons = (await Promise.all(
@@ -52,33 +50,37 @@ export const getStaticProps = async () => {
     )) as any
   }
 
+  if (!!homePage?.aops?.aops) {
+    homePage.aops.aops = (await Promise.all(
+      homePage.aops.aops.map(async (aop) => {
+        return {
+          ...aop,
+          image: aop.image ? await sanityClient.expand(aop.image.asset) : null,
+        }
+      })
+    )) as any
+  }
+
+  if (!!homePage?.services?.services) {
+    homePage.services.services = (await Promise.all(
+      homePage.services.services.map(async (service) => {
+        return {
+          ...service,
+          image: service.image
+            ? await sanityClient.expand(service.image.asset)
+            : null,
+        }
+      })
+    )) as any
+  }
+
   const heroVideo = !!homePage?.hero?.backgroundVideo?.asset
     ? await sanityClient.expand(homePage?.hero?.backgroundVideo?.asset)
     : null
-
   const [logos] = await sanityClient.getAll('logos')
   const [companyInfo] = await sanityClient.getAll('companyInfo')
   const [form] = await sanityClient.getAll('form', 'name == "Contact"')
-
-  const [page] = await defaultSanityClient.fetch(
-    groq`*[type == page && layout == "home"]`
-  )
-  const x = await defaultSanityClient.fetch(groq`
-    *[_type == "homePage"] {
-      services {
-        title,
-        services[] {
-          title,
-          description,
-          link,
-          image {
-            asset-> 
-          }
-        }    
-      }
-    }
-  `)
-  const services = x[0].services
+  const [page] = await sanityClient.getAll('page', 'layout == "home"')
 
   const mainMenu = await defaultSanityClient.fetch(groq`
     *[type == navigation && name == "Main Menu"][0] {
@@ -100,7 +102,6 @@ export const getStaticProps = async () => {
       homePage,
       logos,
       companyInfo,
-      services,
       mainMenu,
       form,
       heroVideo,
