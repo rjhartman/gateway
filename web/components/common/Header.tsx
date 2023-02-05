@@ -19,7 +19,7 @@ const Component = styled.header<{ inner: boolean; small: boolean }>(
   ]
 )
 
-const Number = tw.a`text-xl font-poppins hover:text-primary font-semibold`
+const Number = tw.a`text-3xl font-poppins hover:text-primary font-semibold`
 const LogoWrapper = styled(Link)`
   ${tw`lg:w-56 w-36 flex items-center justify-center h-full`}
 `

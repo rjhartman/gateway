@@ -19,18 +19,6 @@ export default {
       ...phoneNumber,
     },
     {
-      name: 'email',
-      title: 'Email',
-      type: 'string',
-      validation: (Rule) => Rule.email(),
-    },
-    {
-      name: 'hours',
-      title: 'Hours',
-      type: 'array',
-      of: [{ type: 'string' }],
-    },
-    {
       name: 'address',
       title: 'Address',
       type: 'array',
@@ -44,10 +32,17 @@ export default {
     {
       name: 'mapsEmbed',
       title: 'Maps Embed',
-      type: 'code',
-      options: {
-        language: 'html',
-      },
+      type: 'text',
+    },
+    {
+      name: 'employeePortal',
+      title: 'Employee Portal',
+      type: 'url',
+    },
+    {
+      name: 'jobOpenings',
+      title: 'Job Openings',
+      type: 'url',
     },
   ],
 }

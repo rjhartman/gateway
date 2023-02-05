@@ -228,20 +228,6 @@ export interface CompanyInfo extends SanityDocument {
   phoneNumber?: string;
 
   /**
-   * Email — `string`
-   *
-   *
-   */
-  email?: string;
-
-  /**
-   * Hours — `array`
-   *
-   *
-   */
-  hours?: Array<SanityKeyed<string>>;
-
-  /**
    * Address — `array`
    *
    *
@@ -256,11 +242,25 @@ export interface CompanyInfo extends SanityDocument {
   mapsLink?: string;
 
   /**
-   * Maps Embed — `code`
+   * Maps Embed — `text`
    *
    *
    */
-  mapsEmbed?: Code;
+  mapsEmbed?: string;
+
+  /**
+   * Employee Portal — `url`
+   *
+   *
+   */
+  employeePortal?: string;
+
+  /**
+   * Job Openings — `url`
+   *
+   *
+   */
+  jobOpenings?: string;
 }
 
 /**
@@ -328,6 +328,50 @@ export interface MetaData extends SanityDocument {
    *
    */
   frontPage?: SanityReference<Page>;
+}
+
+/**
+ * Form
+ *
+ *
+ */
+export interface Form extends SanityDocument {
+  _type: "form";
+
+  /**
+   * Name — `string`
+   *
+   *
+   */
+  name: string;
+
+  /**
+   * Title — `string`
+   *
+   *
+   */
+  title: string;
+
+  /**
+   * FormCarry ID — `string`
+   *
+   *
+   */
+  formCarryID: string;
+
+  /**
+   * Fields — `array`
+   *
+   *
+   */
+  fields?: Array<SanityKeyed<FormField>>;
+
+  /**
+   * Submit Button Text — `string`
+   *
+   *
+   */
+  submitText: string;
 }
 
 export type CompanyHistory = {
@@ -465,6 +509,27 @@ export type FrontHero = {
     crop?: SanityImageCrop;
     hotspot?: SanityImageHotspot;
   };
+
+  /**
+   * Background Video — `file`
+   *
+   * mp4 format
+   */
+  backgroundVideo?: { _type: "file"; asset: SanityReference<any> };
+
+  /**
+   * Background Type — `string`
+   *
+   *
+   */
+  backgroundType?: "image" | "video";
+
+  /**
+   * Buttons — `array`
+   *
+   *
+   */
+  buttons?: Array<SanityKeyed<Link>>;
 };
 
 export type BlockContent = Array<
@@ -581,17 +646,42 @@ export type Resturant = {
   menuLink?: string;
 };
 
+export type FormField = {
+  _type: "formField";
+  /**
+   * Type — `string`
+   *
+   *
+   */
+  type: "text" | "email" | "tel" | "textarea" | "select" | "hidden";
+
+  /**
+   * Label — `string`
+   *
+   *
+   */
+  label: string;
+
+  /**
+   * Required — `boolean`
+   *
+   *
+   */
+  required: boolean;
+
+  /**
+   * Options — `array`
+   *
+   *
+   */
+  options: Array<SanityKeyed<string>>;
+};
+
 export type Documents =
   | Page
   | Navigation
   | Logos
   | CompanyInfo
   | HomePage
-  | MetaData;
-
-/**
- * This interface is a stub. It was referenced in your sanity schema but
- * the definition was not actually found. Future versions of
- * sanity-codegen will let you type this explicity.
- */
-type Code = any;
+  | MetaData
+  | Form;

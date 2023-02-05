@@ -2,6 +2,7 @@ import type {
   CompanyInfo as CompanyInfoType,
   Logos as LogosType,
   Page as PageType,
+  Form as FormType,
 } from 'lib/schema'
 
 declare global {
@@ -9,6 +10,7 @@ declare global {
     logos: LogosType
     companyInfo: CompanyInfoType
     page: PageType
+    form: FormType
     menu: []
   }
 
@@ -19,5 +21,6 @@ declare global {
     contact?: boolean
     inner?: boolean
     menu?: []
+    form: FormType
   }
 }

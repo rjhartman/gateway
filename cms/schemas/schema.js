@@ -11,6 +11,7 @@ import companyInfo from './documents/companyInfo'
 import navigation from './documents/navigation'
 import homePage from './documents/homePage'
 import metaData from './documents/metaData'
+import form from './documents/form'
 
 // objects
 import seo from './objects/seo'
@@ -21,6 +22,7 @@ import blockContent from './objects/blockContent'
 import companyHistory from './objects/companyHistory'
 import services from './objects/services'
 import resturant from './objects/resturant'
+import formField from './objects/formField'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -37,6 +39,7 @@ export default createSchema({
     homePage,
     metaData,
     companyHistory,
+    form,
 
     // objects
     seo,
@@ -46,5 +49,6 @@ export default createSchema({
     blockContent,
     services,
     resturant,
+    formField,
   ]),
 })
