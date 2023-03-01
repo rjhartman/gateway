@@ -1,55 +1,30 @@
 import type { FC } from 'react'
 import tw from 'twin.macro'
 import styled from 'styled-components'
-import NLink from 'next/link'
 
 import AnimateIn from '@common/AnimateIn'
+import ImSanityImageage from '@common/SanityImage'
 
-const Section = tw.section`flex relative flex-col md:flex-row w-full items-stretch lg:(-translate-y-full items-end absolute)`
+const Section = tw.section`flex relative flex-col md:flex-row w-full items-stretch justify-evenly py-20 gap-20 px-20`
 const Box = styled(AnimateIn)`
-  ${tw`hidden flex-col bg-gray-300 [:nth-child(even)]:(bg-offBlack text-white z-20) z-10 text-center items-center justify-center duration-300 ease-in-out shadow-xl md:flex w-1/4  text-xl font-bold`}
+  ${tw`flex-col z-10 text-center items-center duration-300 w-fit ease-in-out flex flex-col text-xl font-bold max-w-[25%] w-full justify-start`}
 `
-const Link = styled(NLink)`
-  ${tw`w-full h-full px-6 py-4 duration-300 ease-in-out lg:(hover:h-16 h-12) items-center justify-center flex flex-col `}
-`
+const Title = tw.h3`text-3xl font-bold after:([content:''] block w-2/3 mx-auto h-1 bg-primary mt-2) text-center`
+const Description = tw.p`text-lg mt-2`
+const Image = styled(ImSanityImageage)`${tw`max-w-full aspect-square`}`
 
-interface Props {}
+interface Props {
+  aops?: any
+}
 
-const boxen = [
-  {
-    title: 'Large & Clean Restrooms',
-    description: 'Description',
-    link: 'Link',
-  },
-  {
-    title: '24/7 Service',
-    description: 'Description',
-    link: 'Link',
-  },
-  {
-    title: 'TravelCenters of America',
-    description: 'Description',
-    link: 'Link',
-  },
-  {
-    title: 'TA Road Squad',
-    description: 'Description',
-    link: 'Link',
-  },
-]
-
-const boexen: FC<Props> = ({ ...rest }) => {
+const boexen: FC<Props> = ({ aops, ...rest }) => {
   return (
     <Section {...rest}>
-      {boxen.map((box, i) => (
-        <Box
-          key={i}
-          delay={(i + 1) * 300}
-          duration={500}
-          distance="100%"
-          tw="w-full"
-        >
-          <Link href={box.link}>{box.title}</Link>
+      {aops.map(({title, description, image}: {title: string, description:string, image:any}, i: number) => (
+        <Box key={i} delay={(i + 1) * 300} duration={500} distance="50px">
+          {!!image && <Image image={image} alt={title} />}
+          <Title>{title}</Title>
+          <Description>{description}</Description>
         </Box>
       ))}
     </Section>

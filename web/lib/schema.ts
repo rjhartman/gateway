@@ -286,11 +286,11 @@ export interface HomePage extends SanityDocument {
   hero?: FrontHero;
 
   /**
-   * Company History — `companyHistory`
+   * Aops — `aops`
    *
    *
    */
-  companyHistory?: CompanyHistory;
+  aops?: Aops;
 
   /**
    * Services — `services`
@@ -298,6 +298,13 @@ export interface HomePage extends SanityDocument {
    *
    */
   services?: Services;
+
+  /**
+   * Company History — `companyHistory`
+   *
+   *
+   */
+  companyHistory?: CompanyHistory;
 }
 
 /**
@@ -675,6 +682,44 @@ export type FormField = {
    *
    */
   options: Array<SanityKeyed<string>>;
+};
+
+export type Aops = {
+  _type: "aops";
+  /**
+   * Aops — `array`
+   *
+   *
+   */
+  aops?: Array<
+    SanityKeyed<{
+      /**
+       * Title — `string`
+       *
+       *
+       */
+      title?: string;
+
+      /**
+       * Description — `text`
+       *
+       *
+       */
+      description?: string;
+
+      /**
+       * Image — `image`
+       *
+       *
+       */
+      image?: {
+        _type: "image";
+        asset: SanityReference<SanityImageAsset>;
+        crop?: SanityImageCrop;
+        hotspot?: SanityImageHotspot;
+      };
+    }>
+  >;
 };
 
 export type Documents =
