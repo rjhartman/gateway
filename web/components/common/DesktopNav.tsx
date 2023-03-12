@@ -10,10 +10,14 @@ const Children = styled.ul`
   a, span {
     ${tw`w-full py-1 pl-1 pr-6`}
   }
+  span {
+    ${tw`cursor-default`}
+  }
 `
 const TopItem = styled.li(() => [
   tw`[& > a, & > span]:(px-3 py-1) flex leading-none relative after:([content:''] absolute bottom-0 mx-auto left-0 right-0 bg-primary h-0.5 w-0 duration-500 ease-in-out)`,
   tw`hover:(after:w-[calc(100% - 1.25rem)] [.children]:flex)`,
+  tw`[span]:cursor-default`,
 ])
 const ChildItem = styled.li`
   ${tw`hover:bg-secondary whitespace-nowrap flex w-full text-base capitalize`}

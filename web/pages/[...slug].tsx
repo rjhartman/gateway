@@ -2,6 +2,7 @@ import type { GetStaticPaths, NextPage } from 'next'
 import type { FC } from 'react'
 import groq from 'groq'
 
+import type { Form } from 'lib/schema'
 import sanityClient, { defaultSanityClient } from 'lib/sanity-client'
 import Contact from '@templates/Contact'
 import Inner from '@templates/Inner'
@@ -56,11 +57,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps = async ({ params }: { params: any }) => {
   const [logos] = await sanityClient.getAll('logos')
   const [companyInfo] = await sanityClient.getAll('companyInfo')
-  const [form] = await sanityClient.getAll('form', 'name == "Contact"')
   const slug = params.slug[0]
   const page = await defaultSanityClient.fetch(
     `*[type == page && slug.current == "${slug}"][0]`
   )
+  let [form] = await sanityClient.getAll('form', 'name == "Contact"')
+
+  if (!!page?.formOverride) {
+    form = (await sanityClient.expand(page.formOverride)) as Form
+  }
+
   const mainMenu = await defaultSanityClient.fetch(groq`
   *[type == navigation && name == "Main Menu"][0] {
     items[] {

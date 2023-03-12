@@ -77,17 +77,15 @@ export default {
       ],
     },
     {
-      name: 'featuredImage',
-      title: 'Featured Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    },
-    {
       name: 'content',
       title: 'Content',
       type: 'blockContent',
+    },
+    {
+      name: 'formOverride',
+      title: 'Form Override',
+      type: 'reference',
+      to: [{ type: 'form' }],
     },
     {
       name: 'publishStatus',
